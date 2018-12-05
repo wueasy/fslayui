@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta content="text/html;charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link href="../../plugins/pace/themes/pink/pace-theme-flash.css" rel="stylesheet"/>
+	<script src="../../plugins/pace/pace.min.js"></script>
+	<link href="../../plugins/contextMenu/jquery.contextMenu.min.css" rel="stylesheet"/>
+	<link href="../../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../../plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+	<link href="../../plugins/toastr/toastr.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/layui/css/layui.css" media="all"/>
+	<script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../plugins/encrypt/jsencrypt.min.js"></script>
+	<script src="../../plugins/contextMenu/jquery.contextMenu.min.js"></script>
+	<script type="text/javascript" src="../../plugins/ztree/js/jquery.ztree.all.min.js"></script>
+	<script src="../../plugins/toastr/toastr.min.js"></script>
+	<script src="../../plugins/echarts/echarts.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/fs.css?v=2.0.0" media="all"/>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/fsDict.js?v=2.0.0"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
+</head>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space10">
+			 <div class="layui-col-md12">
+				<div class="layui-card">
+	    		<div class="layui-card-header">常见用法</div>
+	    		<div class="layui-card-body">
+						<form class="layui-form">
+						  <div class="layui-form-item">
+						    <label class="layui-form-label">日期</label>
+						    <div class="layui-input-inline">
+						      <input type="text" autocomplete="off" class="layui-input fsDate" dateType="date"/>
+						    </div>
+						    <label class="layui-form-label">日期时间</label>
+						    <div class="layui-input-inline">
+						      <input type="text" autocomplete="off" class="layui-input fsDate" dateType="datetime"/>
+						    </div>
+					  	</div>
+							<div class="layui-form-item">
+						    <label class="layui-form-label">年选择器</label>
+						    <div class="layui-input-inline">
+						      <input type="text" autocomplete="off" class="layui-input fsDate" dateType="year"/>
+						    </div>
+						    <label class="layui-form-label">年月选择器</label>
+						    <div class="layui-input-inline">
+						      <input type="text" autocomplete="off" class="layui-input fsDate" dateType="month"/>
+						    </div>
+								<label class="layui-form-label">时间选择器</label>
+						    <div class="layui-input-inline">
+						      <input type="text" autocomplete="off" class="layui-input fsDate" dateType="time"/>
+						    </div>
+					  	</div>
+						</form>
+	    		</div>
+	    	</div>
+			</div>
+			<div class="layui-col-md12">
+			 <div class="layui-card">
+				 <div class="layui-card-header">范围选择</div>
+				 <div class="layui-card-body">
+					 <form class="layui-form">
+						 <div class="layui-form-item">
+							 <label class="layui-form-label">日期范围</label>
+							 <div class="layui-input-inline">
+								 <input type="text" autocomplete="off" class="layui-input fsDate" dateType="date" dateRange="1"/>
+							 </div>
+							 <label class="layui-form-label" style="width:120px;">日期时间范围</label>
+							 <div class="layui-input-inline" style="width: 300px;">
+								 <input type="text" autocomplete="off" class="layui-input fsDate" dateType="datetime" dateRange="1"/>
+							 </div>
+						 </div>
+						 <div class="layui-form-item">
+							 <label class="layui-form-label">年范围</label>
+							 <div class="layui-input-inline">
+								 <input type="text" autocomplete="off" class="layui-input fsDate" dateType="year" dateRange="1"/>
+							 </div>
+							 <label class="layui-form-label">年月范围</label>
+							 <div class="layui-input-inline" style="width: 300px;">
+								 <input type="text" autocomplete="off" class="layui-input fsDate" dateType="month" dateRange="1"/>
+							 </div>
+							 <label class="layui-form-label">时间范围</label>
+							 <div class="layui-input-inline" style="width: 300px;">
+								 <input type="text" autocomplete="off" class="layui-input fsDate" dateType="time" dateRange="1"/>
+							 </div>
+						 </div>
+					 </form>
+				 </div>
+			 </div>
+		 </div>
+		 <div class="layui-col-md12">
+			<div class="layui-card">
+				<div class="layui-card-header">日期大小范围选择</div>
+				<div class="layui-card-body">
+					<form class="layui-form">
+						<div class="layui-form-item">
+							<label class="layui-form-label">最小日期</label>
+							<div class="layui-input-inline">
+								<input type="text" autocomplete="off" class="layui-input fsDate" dateType="date" dateMin="-7"/>
+							</div>
+							<label class="layui-form-label">最大日期</label>
+							<div class="layui-input-inline" style="width: 300px;">
+								<input type="text" autocomplete="off" class="layui-input fsDate" dateType="date" dateMax="7"/>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label" style="width:120px;">最小日期时间</label>
+							<div class="layui-input-inline">
+								<input type="text" autocomplete="off" class="layui-input fsDate" dateType="datetime" dateMin="-7"/>
+							</div>
+							<label class="layui-form-label" style="width:120px;">最大日期时间</label>
+							<div class="layui-input-inline" style="width: 300px;">
+								<input type="text" autocomplete="off" class="layui-input fsDate" dateType="datetime" dateMax="7"/>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">日期范围</label>
+							<div class="layui-input-inline">
+								<input type="text" autocomplete="off" class="layui-input fsDate" dateType="date" dateRange="1" dateMin="-7" dateMax="7"/>
+							</div>
+							<label class="layui-form-label" style="width:120px;">日期时间范围</label>
+							<div class="layui-input-inline" style="width: 300px;">
+								<input type="text" autocomplete="off" class="layui-input fsDate" dateType="datetime" dateRange="1" dateMin="-7" dateMax="7"/>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?d506ef94f6ea5b1b6824728a5e476535";
+	  var s = document.getElementsByTagName("script")[0];
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</body>
+</html>

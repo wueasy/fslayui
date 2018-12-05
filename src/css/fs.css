@@ -1,0 +1,136 @@
+/*
+ * fsLayui - A Front-end Rapid Development Framework.
+ * Copyright (C) 2017-2018 wueasy.com
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+html{background-color:#FAFBFC;color:#666;}
+
+
+/*公共样式*/
+.childrenBody {
+    margin: 10px 10px 0;
+}
+
+.menu-tree-this {
+	color : #009688;
+}
+fieldset { min-width: 100px; }
+
+
+.layui-fluid{position:relative;margin:0 auto;padding:10px;}
+
+
+
+.layui-table-view{position:relative;margin:5px 0 0 0;overflow:hidden;}
+
+
+.layui-form-query{padding:10px 15px 0px 15px}
+
+.fsDatagrid{display: none;}
+
+.fsDatagridCols{display: none;}
+
+.fsLayedit{display: none;}
+
+.fsAdd{display: none;}
+
+.fsEdit{display: none;}
+
+.fsTreeRightMenu{display: none;}
+
+.fsTab{height: 40px;margin:0;}
+.fsTab .layui-tab-title{z-index:999; top:0;height: 40px;}
+.fsTab .layui-tab-title cite{font-style:normal;}
+.fsTab .layui-tab-item{ position: absolute; top: 41px; bottom:0; left: 0; right: 0; padding: 0; margin: 0; -webkit-overflow-scrolling:touch; overflow:auto;}
+.fsTab .layui-tab-content{height:100%;padding:0;}
+.fsTab .layui-tab-content iframe{ width: 100%; height:100%; border:none; min-width: 320px; position:absolute; }
+
+.pace .pace-progress {
+  background: #1E92FB; /*进度条颜色*/
+  height: 3px;
+}
+.pace .pace-progress-inner {
+  box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+}
+.pace .pace-activity {
+  border-top-color: #1E92FB;    /*上边框颜色*/
+  border-left-color: #1E92FB;    /*左边框颜色*/
+}
+
+.fsTopMenu{left:230px;}
+
+@media screen and (max-width: 750px){
+	.logo{ padding:0;}
+	.component,.site-mobile .site-tree-mobile{ display: none !important; }
+	.layui-layout-admin .layui-main{ margin-right: 0; }
+	.layui-layout-admin .layui-side{ left:-260px; }
+	.layui-layout-admin .fsTopMenu{ left:0px; }
+	.site-mobile .layui-side{ left: 0; z-index:9999; }
+	.site-tree-mobile {display: block!important; position: fixed; z-index: 100000; bottom: 15px; left: 15px; width: 50px; height: 50px; line-height: 50px; border-radius: 2px; text-align: center; background-color: rgba(0,0,0,.7); color: #fff;}
+	.site-mobile .site-mobile-shade { content: ''; position: fixed; top: 0; bottom: 0; left: 0; right: 0; background-color: rgba(0,0,0,.8); z-index: 999;}
+	/*layui-body*/
+	.panel{ width:50%; }
+	.layui-body,.layui-layout-admin .layui-footer{ left:0; }
+}
+
+.fsSwitchMenu{position:absolute;left:200px;width:20px;height:20px;margin:15px 15px 0 0;font-size:17px;text-align:center;padding:5px 5px;color:#fff;background-color:#009688;}
+
+.showMenu.layui-layout-admin .layui-side{ left:-200px; }
+.showMenu .layui-body,.showMenu .layui-footer{ left:0; }
+
+.layui-card{margin-bottom:15px;border-radius:2px;background-color:#fff;box-shadow:0 1px 2px 0 rgba(0,0,0,.05);}
+.layui-card:last-child{margin-bottom:0}
+.layui-card-header{height:42px;line-height:42px;padding:0 15px;border-bottom:1px solid #e6e6e6;color:#333;border-radius:2px 2px 0 0;font-size:14px}
+.layui-bg-black,.layui-bg-blue,.layui-bg-cyan,.layui-bg-green,.layui-bg-orange,.layui-bg-red{color:#fff!important}
+.layui-card-body{padding:10px 15px;line-height:24px}
+/**.layui-card-body .layui-table{margin:5px 0}**/
+.layui-card .layui-tab{margin:0}
+
+.layui-tab-card>.layui-tab-title{background-color: #fff;}
+.layui-tab-title{border-bottom-width:0px;}
+.layui-tab-card>.layui-tab-title>.layui-this{background-color:#f2f2f2;}
+
+.layui-layer-title{background-color: #fff;}
+
+#toast-container{z-index:21111111;}
+
+
+.layui-quote-warn{border-left:5px solid #FFB800;border-color:#FFB800;}
+
+.layui-quote-error{border-left:5px solid #FF5722;border-color:#FF5722;}
+
+.panel_box{margin-bottom:5px;}
+.panel{ text-align:center; height:90px;}
+.panel_box a{display:block; border-radius:5px; overflow:hidden; height:80px; background-color:#FFFFFF !important; }
+.panel_icon{ width:40%; display: inline-block; line-height:80px; float:left; position:relative; height:100%;}
+.panel_icon i{ font-size:40px !important; color:#fff; display: inline-block;}
+.panel_word{ width:60%; display: inline-block; float:right; margin:13px 0 14px; }
+.panel_word span{ font-size:25px; display:block; height:34px; }
+.panel .loginTime{ font-size:15px; color:#1E9FFF; line-height:17px;}
+.panel em{ font-style:normal;}
+
+.layui-form-label .required{margin-right:4px;color: #FF5722;font-size: 15px;font-style:normal;}
+
+.layui-nav .layui-nav-item a{padding:0 10px;}
+
+/**收缩样式**/
+.fsShrink{/* float: right; */top: 10px;cursor:pointer;color: #01AAED;}
+
+.layui-disabled, .layui-disabled:hover{color:#888888;}
+
+.orgTitle{margin-left:10px;color: #1E9FFF;}
+
+.layui-tab-card>.layui-tab-title .layui-this{background-color:#FAFBFC;}
+.layui-tab-title .layui-this{color:#6190E8;font-weight:bold;}

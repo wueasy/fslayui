@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html;charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link href="/plugins/pace/themes/pink/pace-theme-flash.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/plugins/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/plugins/cropper/cropper.min.css" media="all"/>
+	<script src="/plugins/pace/pace.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/plugins/layui/css/layui.css" media="all"/>
+	<script type="text/javascript" src="/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/plugins/cropper/cropper.min.js"></script>
+	<script src="/plugins/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/plugins/layui/layui.js"></script>
+	<script src="/plugins/toastr/toastr.min.js"></script>
+	<script type="text/javascript" src="/plugins/frame/js/fs.js?v=2.0.0"></script>
+
+<style type="text/css">
+.pace .pace-progress {
+  background: #1E92FB; /*进度条颜色*/
+  height: 3px;
+}
+.pace .pace-progress-inner {
+  box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+}
+.pace .pace-activity {
+  border-top-color: #1E92FB;    /*上边框颜色*/
+  border-left-color: #1E92FB;    /*左边框颜色*/
+}
+/* Basic */
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.browserupgrade {
+  margin: 0;
+  padding: .5rem 1rem;
+  background-color: #fcfcfc;
+  text-align: center;
+}
+
+.btn {
+  padding-left: .75rem;
+  padding-right: .75rem;
+}
+
+label.btn {
+  margin-bottom: 0;
+}
+
+.d-flex > .btn {
+  flex-grow: 1;
+}
+
+.docs-carbonads-container {
+  position: relative;
+}
+
+.docs-carbonads {
+  font-size: .875rem;
+  max-width: 360px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.carbon-wrap {
+  overflow: hidden;
+}
+
+.carbon-img {
+  clear: left;
+  float: left;
+  display: block;
+}
+
+.carbon-text,
+.carbon-poweredby {
+  display: block;
+  margin-left: 140px;
+}
+
+.carbon-text,
+.carbon-text:hover,
+.carbon-text:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.carbon-poweredby,
+.carbon-poweredby:hover,
+.carbon-poweredby:focus {
+  color: #ddd;
+  text-decoration: none;
+}
+
+
+/* Content */
+
+.img-container,
+.img-preview {
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.img-container {
+  height: 300px;
+  width: 300px;
+  margin-bottom: 1rem;
+}
+
+.img-container > img {
+  max-width: 100%;
+}
+
+.docs-preview {
+  margin-right: -1rem;
+}
+
+.img-preview {
+  float: left;
+  margin-right: .5rem;
+  margin-bottom: .5rem;
+  overflow: hidden;
+}
+
+.img-preview > img {
+  max-width: 100%;
+}
+
+.preview-lg {
+  width: 200px;
+  height: 200px;
+}
+
+.preview-md {
+  width: 8rem;
+  height: 4.5rem;
+}
+
+.preview-sm {
+  width: 4rem;
+  height: 2.25rem;
+}
+
+.preview-xs {
+  width: 2rem;
+  height: 1.125rem;
+  margin-right: 0;
+}
+
+.docs-data > .input-group {
+  margin-bottom: .5rem;
+}
+
+.docs-data > .input-group > label {
+  min-width: 5rem;
+}
+
+.docs-data > .input-group > span {
+  min-width: 3rem;
+}
+
+.docs-buttons > .btn,
+.docs-buttons > .btn-group,
+.docs-buttons > .form-control {
+  margin-right: .25rem;
+  margin-bottom: .5rem;
+}
+
+.docs-toggles > .btn,
+.docs-toggles > .btn-group,
+.docs-toggles > .dropdown {
+  margin-bottom: .5rem;
+}
+
+.docs-tooltip {
+  display: block;
+  margin: -.5rem -.75rem;
+  padding: .5rem .75rem;
+}
+
+.docs-tooltip > .icon {
+  margin: 0 -.25rem;
+  vertical-align: top;
+}
+
+.tooltip-inner {
+  white-space: normal;
+}
+
+.btn-upload .tooltip-inner,
+.btn-toggle .tooltip-inner {
+  white-space: nowrap;
+}
+
+.btn-toggle {
+  padding: .5rem;
+}
+
+.btn-toggle > .docs-tooltip {
+  margin: -.5rem;
+  padding: .5rem;
+}
+
+@media (max-width: 400px) {
+  .btn-group-crop {
+    margin-right: -1rem!important;
+  }
+
+  .btn-group-crop > .btn {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+
+  .btn-group-crop .docs-tooltip {
+    margin-left: -.5rem;
+    margin-right: -.5rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+}
+
+.docs-options .dropdown-menu {
+  width: 100%;
+}
+
+.docs-options .dropdown-menu > li {
+  font-size: .875rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.docs-options .dropdown-menu > li:hover {
+  background-color: #f7f7f7;
+}
+
+.docs-options .dropdown-menu > li > label {
+  display: block;
+}
+
+.docs-cropped .modal-body {
+  text-align: center;
+}
+
+.docs-cropped .modal-body > img,
+.docs-cropped .modal-body > canvas {
+  max-width: 100%;
+}
+
+</style>
+
+</head>
+<body class="layui-layout-body">
+	<div class="" style="margin:20px;">
+    <div class="row">
+      <div class="col-md-12">
+      	<table cellspacing="50px">
+      		<tr>
+      			<td>
+      				<div class="img-container">
+			          <img id="image" alt="Picture" style="display: none;">
+			        </div>
+      			</td>
+      			<td valign="top">
+      				<div class="docs-preview clearfix" style="margin-left: 30px;">
+			          <div class="img-preview preview-lg"></div>
+			        </div>
+      			</td>
+      		</tr>
+      	</table>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 docs-buttons">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              放大
+            </span>
+          </button>
+          <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              缩小
+            </span>
+          </button>
+        </div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" data-method="move" data-option="-10" data-second-option="0">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              左移
+            </span>
+          </button>
+          <button type="button" class="btn btn-primary" data-method="move" data-option="10" data-second-option="0">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              右移
+            </span>
+          </button>
+          <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="-10">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              上移
+            </span>
+          </button>
+          <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="10">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              下移
+            </span>
+          </button>
+        </div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" data-method="rotate" data-option="-90">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              左转90º
+            </span>
+          </button>
+          <button type="button" class="btn btn-primary" data-method="rotate" data-option="90">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              右转90º
+            </span>
+          </button>
+        </div>
+
+        <div class="btn-group">
+          <!-- <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              刷新
+            </span>
+          </button> -->
+          <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
+            <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              选择图片
+            </span>
+          </label>
+        </div>
+
+        <div class="btn-group btn-group-crop">
+            <button class="btn btn-primary" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 200, &quot;height&quot;: 200 }" type="button">
+                上传头像
+            </button>
+        </div>
+
+        <!-- Show the cropped image in modal -->
+        <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="getCroppedCanvasTitle">Cropped</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.modal -->
+      </div><!-- /.docs-buttons -->
+  </div>
+
+<script type="text/javascript">
+
+layui.use(['layer','fsConfig','fsCommon'], function(){
+
+  var fsConfig = layui.fsConfig,
+  layer = layui.layer,
+  fsCommon = layui.fsCommon,
+  statusName = $.result(fsConfig,"global.result.statusName","errorNo"),
+  msgName = $.result(fsConfig,"global.result.msgName","errorInfo"),
+  successNo = $.result(fsConfig,"global.result.successNo","0"),
+  uploadUrl = $.result(fsConfig,"global.uploadUrl","");
+
+	var uploadFileList = top.$('meta[name="uploadFileList"]');
+  if(uploadFileList.length==0)
+  {
+	top.$('head').append("<meta name=\"uploadFileList\" content=\"\"/>");
+  }else{
+ 	uploadFileList.attr("content","");
+  }
+
+  var console = window.console || { log: function () {} };
+  var URL = window.URL || window.webkitURL;
+  var $image = $('#image');
+  var $download = $('#download');
+  var options = {
+        aspectRatio: 1 / 1,
+        preview: '.img-preview',
+        crop: function (e) {
+        }
+      };
+  var originalImageURL = $image.attr('src');
+  var uploadedImageName = 'cropped.jpg';
+  var uploadedImageType = 'image/jpeg';
+  var uploadedImageURL;
+
+  // Cropper
+  $image.on({
+    ready: function (e) {
+    },
+    cropstart: function (e) {
+    },
+    cropmove: function (e) {
+    },
+    cropend: function (e) {
+    },
+    crop: function (e) {
+    },
+    zoom: function (e) {
+    }
+  }).cropper(options);
+
+
+  // Buttons
+  if (!$.isFunction(document.createElement('canvas').getContext)) {
+    $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+  }
+
+  if (typeof document.createElement('cropper').style.transition === 'undefined') {
+    $('button[data-method="rotate"]').prop('disabled', true);
+    $('button[data-method="scale"]').prop('disabled', true);
+  }
+
+
+  // Download
+  if (typeof $download[0].download === 'undefined') {
+    $download.addClass('disabled');
+  }
+
+
+  // Options
+  $('.docs-toggles').on('change', 'input', function () {
+    var $this = $(this);
+    var name = $this.attr('name');
+    var type = $this.prop('type');
+    var cropBoxData;
+    var canvasData;
+
+    if (!$image.data('cropper')) {
+      return;
+    }
+
+    if (type === 'checkbox') {
+      options[name] = $this.prop('checked');
+      cropBoxData = $image.cropper('getCropBoxData');
+      canvasData = $image.cropper('getCanvasData');
+
+      options.ready = function () {
+        $image.cropper('setCropBoxData', cropBoxData);
+        $image.cropper('setCanvasData', canvasData);
+      };
+    } else if (type === 'radio') {
+      options[name] = $this.val();
+    }
+
+    $image.cropper('destroy').cropper(options);
+  });
+
+
+  // Methods
+  $('.docs-buttons').on('click', '[data-method]', function () {
+    var $this = $(this);
+    var data = $this.data();
+    var cropper = $image.data('cropper');
+    var cropped;
+    var $target;
+    var result;
+
+    if ($this.prop('disabled') || $this.hasClass('disabled')) {
+      return;
+    }
+
+    if (cropper && data.method) {
+      data = $.extend({}, data); // Clone a new one
+
+      if (typeof data.target !== 'undefined') {
+        $target = $(data.target);
+
+        if (typeof data.option === 'undefined') {
+          try {
+            data.option = JSON.parse($target.val());
+          } catch (e) {
+            console.log(e.message);
+          }
+        }
+      }
+
+      cropped = cropper.cropped;
+
+      switch (data.method) {
+        case 'rotate':
+          if (cropped && options.viewMode > 0) {
+            $image.cropper('clear');
+          }
+
+          break;
+
+        case 'getCroppedCanvas':
+          if (uploadedImageType === 'image/jpeg') {
+            if (!data.option) {
+              data.option = {};
+            }
+
+            data.option.fillColor = '#fff';
+          }
+
+          break;
+      }
+
+      result = $image.cropper(data.method, data.option, data.secondOption);
+
+      switch (data.method) {
+        case 'rotate':
+          if (cropped && options.viewMode > 0) {
+            $image.cropper('crop');
+          }
+
+          break;
+
+        case 'scaleX':
+        case 'scaleY':
+          $(this).data('option', -data.option);
+          break;
+
+        case 'getCroppedCanvas':
+          if (result) {
+            result.toBlob(function(blob){
+			    var formData=new FormData();
+			    formData.append('file',blob,uploadedImageName);
+			    $.ajax({
+			        method:"post",
+			        url: uploadUrl, //用于文件上传的服务器端请求地址
+			        data: formData,
+			        processData: false,
+			        contentType: false,
+			        success:function(result){
+		            if(result[statusName] != successNo){
+									var filters = fsConfig["filters"];
+								   	if(!$.isEmpty(filters)){
+							     	  var otherFunction = filters[result[statusName]];
+							      	  if($.isFunction(otherFunction)){
+							       	     otherFunction(result);
+							      	      return;
+							     	   }
+								    }
+							   		fsCommon.errorMsg(result[msgName]);
+							   		return;
+									}
+
+									//上传成功后，返回文件路径
+									var fileList = $.result(result,$.result(fsConfig,"global.result.dataName"));
+									top.$('meta[name="uploadFileList"]').attr("content",JSON.stringify(fileList));
+
+									//关闭
+									var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+									parent.layer.close(index);
+			        }
+			    });
+			});
+          }
+
+          break;
+
+        case 'destroy':
+          if (uploadedImageURL) {
+            URL.revokeObjectURL(uploadedImageURL);
+            uploadedImageURL = '';
+            $image.attr('src', originalImageURL);
+          }
+
+          break;
+      }
+
+      if ($.isPlainObject(result) && $target) {
+        try {
+          $target.val(JSON.stringify(result));
+        } catch (e) {
+          console.log(e.message);
+        }
+      }
+
+    }
+  });
+
+
+  // Keyboard
+  $(document.body).on('keydown', function (e) {
+
+    if (!$image.data('cropper') || this.scrollTop > 300) {
+      return;
+    }
+
+    switch (e.which) {
+      case 37:
+        e.preventDefault();
+        $image.cropper('move', -1, 0);
+        break;
+
+      case 38:
+        e.preventDefault();
+        $image.cropper('move', 0, -1);
+        break;
+
+      case 39:
+        e.preventDefault();
+        $image.cropper('move', 1, 0);
+        break;
+
+      case 40:
+        e.preventDefault();
+        $image.cropper('move', 0, 1);
+        break;
+    }
+
+  });
+
+
+  // Import image
+  var $inputImage = $('#inputImage');
+
+  if (URL) {
+    $inputImage.change(function () {
+      var files = this.files;
+      var file;
+
+      if (!$image.data('cropper')) {
+        return;
+      }
+
+      if (files && files.length) {
+        file = files[0];
+
+        if (/^image\/\w+$/.test(file.type)) {
+          uploadedImageName = file.name;
+          uploadedImageType = file.type;
+
+          if (uploadedImageURL) {
+            URL.revokeObjectURL(uploadedImageURL);
+          }
+
+          uploadedImageURL = URL.createObjectURL(file);
+          $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+          $inputImage.val('');
+        } else {
+          window.alert('Please choose an image file.');
+        }
+      }
+    });
+  } else {
+    $inputImage.prop('disabled', true).parent().addClass('disabled');
+  }
+
+
+});
+</script>
+</body>
+</html>

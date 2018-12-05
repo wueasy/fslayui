@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta content="text/html;charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link href="../../plugins/pace/themes/pink/pace-theme-flash.css" rel="stylesheet"/>
+	<script src="../../plugins/pace/pace.min.js"></script>
+	<link href="../../plugins/contextMenu/jquery.contextMenu.min.css" rel="stylesheet"/>
+	<link href="../../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../../plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+	<link href="../../plugins/toastr/toastr.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/layui/css/layui.css" media="all"/>
+	<script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../plugins/encrypt/jsencrypt.min.js"></script>
+	<script src="../../plugins/contextMenu/jquery.contextMenu.min.js"></script>
+	<script type="text/javascript" src="../../plugins/ztree/js/jquery.ztree.all.min.js"></script>
+	<script src="../../plugins/toastr/toastr.min.js"></script>
+	<script src="../../plugins/echarts/echarts.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/fs.css?v=2.0.0" media="all"/>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+  <script type="text/javascript" src="../../plugins/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="../../plugins/tinymce/jquery.tinymce.min.js"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/fsDict.js?v=2.0.0"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
+</head>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space10">
+			 <div class="layui-col-md12">
+				<div class="layui-card">
+          <div class="layui-card-header">版本更新记录</div>
+	    		<div class="layui-card-body">
+						<div>
+				<ul class="layui-timeline">
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.2.0</h2>
+			            <span class="layui-badge-rim">未发布</span>
+			          </div>
+			          <ul>
+			            <li>新增导航栏菜单切换，默认选中第一个子菜单</li>
+			            <li>新增一级菜单可以点击页面事件</li>
+									<li>优化如果无二级菜单，左边菜单栏自动隐藏</li>
+									<li>优化表单只验证格式，不需要必填的bug</li>
+									<li>优化文件可以批量上传</li>
+									<li>新增树自定义点击事件</li>
+									<li>新增窗口收缩功能</li>
+									<li>新增按钮提交前回调</li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+			          </ul>
+			        </div>
+			    </li>
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.1.2</h2>
+			            <span class="layui-badge-rim">2018-10-06</span>
+			          </div>
+			          <ul>
+			            <li>优化新增页面，下拉框无法正常赋值bug</li>
+			            <li>优化fs.js中需要配置根目录问题(新版本中不需要再配置项目路径)</li>
+									<li>优化菜单配置(配置迁移至fsConfig.js中)</li>
+									<li>页面修改为相对路径</li>
+			          </ul>
+			        </div>
+			    </li>
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.1.1</h2>
+			            <span class="layui-badge-rim">2018-09-10</span>
+			          </div>
+			          <ul>
+			            <li>layui版本升级到2.4.3</li>
+			            <li>新增表单、表格评分功能</li>
+									<li>新增表单、表格滑块功能</li>
+								  <li>优化数据表格查询条件后无数据，固定右边菜单栏问题</li>
+			          </ul>
+			        </div>
+			    </li>
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.1.0</h2>
+			            <span class="layui-badge-rim">2018-09-02</span>
+			          </div>
+			          <ul>
+			            <li>layui版本升级到2.4.2</li>
+			            <li>新增全局默认表格高度配置fsConfig.js</li>
+									<li>表格支持2.4.2版本的新特性（数据单选、表格工具栏、合计等）</li>
+								  <li>优化行点击事件（使用layui自带点击事件）</li>
+			          </ul>
+			        </div>
+			    </li>
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.0.2</h2>
+			            <span class="layui-badge-rim">2018-08-18</span>
+			          </div>
+			          <ul>
+			            <li>优化导航菜单（左边导航菜单支持无限级，结构优化）</li>
+			            <li>优化上传附件bug</li>
+									<li>新增按钮请求成功后回调（表单提交）</li>
+								  <li>新增附件上传、表单回调案例</li>
+								  <li>优化移动端菜单点击后隐藏bug</li>
+			          </ul>
+			        </div>
+			    </li>
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.0.1</h2>
+			            <span class="layui-badge-rim">2018-08-16</span>
+			          </div>
+			          <ul>
+			            <li>layui版本升级至2.3.0</li>
+			            <li>左边导航菜单支持三级目录</li>
+			          </ul>
+			        </div>
+			    </li>
+					<li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>2.0.0</h2>
+			            <span class="layui-badge-rim">2018-08-08</span>
+			          </div>
+			          <ul>
+			            <li>新增上传进度条</li>
+			            <li>新增头像上传</li>
+									<li>新增加密功能</li>
+								  <li>新增二次验证确认</li>
+								  <li>新增表单回调事件</li>
+							  	<li>新增树回调事件</li>
+							  	<li>新增提示消息</li>
+			          </ul>
+			        </div>
+			    </li>
+				  <li class="layui-timeline-item">
+			        <i class="layui-icon layui-timeline-axis"></i>
+			        <div class="layui-timeline-content layui-text">
+			          <div class="layui-timeline-title">
+			            <h2>1.x</h2>
+			            <span class="layui-badge-rim"></span>
+			          </div>
+			          <ul>
+			            <li>tinymce富文本编辑器</li>
+			            <li>新增单选框使用数据字典加载数据</li>
+			            <li>新增复选框使用数据字典加载数据</li>
+									<li>新增自定义ajax请求类型</li>
+									<li>新增ajax执行成功错误码统一配置</li>
+									<li>新增自定义按钮事件回调处理</li>
+									<li>新增菜单栏配置(支持配置本地菜单和异步加载菜单)</li>
+									<li>优化tab导航菜单</li>
+									<li>优化默认图标，使用font-awesome图标库</li>
+									<li>优化附件上传静态文件相对路径</li>
+									<li>新增单页面禁用输入</li>
+									<li>新增导航栏右键菜单</li>
+									<li>新增数据表格异步排序(搜索排序，当前页排序)</li>
+									<li>优化页面相对路径</li>
+									<li>新增菜单栏隐藏/显示</li>
+									<li>新增菜单导航栏路由功能</li>
+									<li>优化导航栏切换后，选中的样式</li>
+									<li>新增pace.js进度条插件</li>
+									<li>优化数据字典table解析，字典值必须配置和字段一致bug</li>
+									<li>新增静态表格操作，表单和表格数据提交</li>
+									<li>新增数据表格复杂表头支持</li>
+									<li>优化编辑、查看获取数据方式，新增前端缓存读取</li>
+									<li>优化动态数据字典入参配置(支持配置传入指定选择器内容)</li>
+									<li>优化数据字典使用方式(数据字典可以直接配置表格数据转义和下拉框数据填充使用)</li>
+									<li>新增数据表格转义样式和多个值转义</li>
+									<li>新增数据表格内容异步转义</li>
+									<li>新增form表单联动表格操作</li>
+									<li>新增layedit编辑器</li>
+									<li>新增联动表格支持(简单或复杂的操作)</li>
+									<li>表格新增isLoad是否自动渲染配置</li>
+									<li>新增tab数据表格案例</li>
+									<li>新增复杂数据表格案例</li>
+									<li>新增附件上传功能</li>
+									<li>支持数据表格刷新，查询，修改，删除功能</li>
+									<li>支持树+数据表格操作</li>
+									<li>支持表单操作</li>
+									<li>支持多个数据表格</li>
+			          </ul>
+			        </div>
+			      </li>
+				</ul>
+			</div>
+	    		</div>
+	    	</div>
+			</div>
+
+
+    </div>
+		</div>
+	</div>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?d506ef94f6ea5b1b6824728a5e476535";
+	  var s = document.getElementsByTagName("script")[0];
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</body>
+</html>

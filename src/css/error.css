@@ -1,0 +1,55 @@
+/*
+ * fsLayui - A Front-end Rapid Development Framework.
+ * Copyright (C) 2017-2018 wueasy.com
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+html,body {
+	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif;font-size:14px;
+	color:#fff;margin:0;padding:0;height:100%;overflow:hidden;overflow-y:auto;
+}
+body{background:#061536;}
+a{ color:#18b9d6; text-decoration:none;}
+a:visited{ color:#ab4c2a; text-decoration:none;}
+a:hover{ color:#f9300f; text-decoration:none;}
+table{ empty-cells:show;border-collapse:collapse; margin:0; padding:0;width:100%;}
+ul,li,ol,dl,dt,dd{list-style:none;margin:0;padding:0;}
+li,p{line-height:22px;}
+h1,h2,h3,h4,p,th,td,form,input{margin:0;padding:0;font-size:14px;font-weight:normal;text-align:left;}
+
+.main{background:url(../images/error/error_bg.jpg) no-repeat 50% 0;min-height:655px;width:1830px;margin:0 auto;position:relative;}
+.foot{width:1830px;margin:0 auto;height:640px;background:url(../images/error/error_bottom.png) 50% 0 no-repeat;}
+.code{width:420px;height:140px;position:absolute;left:50%;top:50%;margin:-200px -210px;}
+.c500{background:url(../images/error/500.png) 0 0 no-repeat;}
+.c502{background:url(../images/error/502.png) 0 0 no-repeat;}
+.c404{background:url(../images/error/404.png) 0 0 no-repeat;}
+.c493{background:url(../images/error/493.png) 0 0 no-repeat;margin-top:-172px;}
+.cwaf{background:none;}
+.btn{vertical-align:middle;text-align:center;position:absolute;left:0;top:410px;width:100%;}
+.btn a{font-weight:bold;font-size:14px;display:inline-block;color:#fff;width:220px;height:50px;line-height:50px;background:#0e9780;border-radius:30px;}
+.btn a:visited{color:#fff;}
+.btn a:hover{background:#0ac1a2;}
+.detail{text-align:center;width:100%;color:#0e9780;margin-top: -160px;position: relative;z-index: 2;}
+.detail h2{text-align:center;font-size:32px;width:900px;line-height:1.5em;margin:0 auto 10px;font-weight:normal;}
+.detail .en{text-align:center;font-size:16px;line-height:32px;}
+.msg_list{margin:10px auto 0;width:980px;}
+.budle{width:100%;height:70px;background:url(../images/error/t-bubble.png) 180px 0 no-repeat;}
+.list{border-radius:30px;background:#000;background:rgba(0,0,0,0.3);padding:40px;text-align:left;font-size:14px;}
+.list .btxt{margin-top:50px;}
+.list ul{margin-bottom:30px;}
+.list li{margin:10px 0;vertical-align:middle;position:relative;padding-left:30px;}
+.list .nop li{padding-left:0;}
+.list li em{font-style:normal;vertical-align:middle;position:absolute;left:0;top:0;}
+.event{text-align:center;width:100%;margin:0 auto 20px;color:#18b9d6;}
+.event p{text-align:center;}
