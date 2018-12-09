@@ -22,15 +22,17 @@
 
 ## 使用文档
 
-完善中，敬请期待
+[在线文档](http://www.wueasy.com/docs/fslayui/)
 
 
 ## 授权
 
 * 社区版：使用 AGPLv3 开源，如果你选择使用社区版，则必须完全遵守 AGPLv3 的相关条款
-* 商业版：请联系 QQ `535412000` 进行细节咨询
+* 商业版：请联系 QQ `535412000` 或邮箱 `server@wueasy.com` 进行细节咨询
 
 
 ## 社区
 
 [问题反馈或讨论](https://github.com/wueasy/fslayui/issues)
+
+qq交流群：**24017956** [点击链接加入群](https://jq.qq.com/?_wv=1027&k=5uImi0a)  

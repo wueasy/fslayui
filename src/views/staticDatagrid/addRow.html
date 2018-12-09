@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html;charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="format-detection" content="telephone=no"/>
+	<link href="../../plugins/pace/themes/pink/pace-theme-flash.css" rel="stylesheet"/>
+	<script src="../../plugins/pace/pace.min.js"></script>
+	<link href="../../plugins/contextMenu/jquery.contextMenu.min.css" rel="stylesheet"/>
+	<link href="../../plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="../../plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+	<link href="../../plugins/toastr/toastr.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="../../plugins/layui/css/layui.css" media="all"/>
+	<script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../plugins/encrypt/jsencrypt.min.js"></script>
+	<script src="../../plugins/contextMenu/jquery.contextMenu.min.js"></script>
+	<script type="text/javascript" src="../../plugins/ztree/js/jquery.ztree.all.min.js"></script>
+	<script type="text/javascript" src="../../plugins/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript" src="../../plugins/tinymce/jquery.tinymce.min.js"></script>
+	<script src="../../plugins/toastr/toastr.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/fs.css?v=2.0.0" media="all"/>
+	<script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/fsDict.js?v=2.0.0"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
+	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
+</head>
+<body>
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-card-body">
+	<form class="layui-form" isLoad="1" loadFuncNo="">
+	  <div class="layui-form-item">
+	    <label class="layui-form-label">参数</label>
+	    <div class="layui-input-inline">
+	      <input type="text" name="attribute" required="" lay-verType="tips" lay-verify="required" placeholder="请输入参数" autocomplete="off" class="layui-input"/>
+	    </div>
+      <label class="layui-form-label">名称</label>
+	    <div class="layui-input-inline">
+	      <input type="text" name="name" required="" lay-verType="tips" lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input"/>
+	    </div>
+	  </div>
+	  <div class="layui-form-item">
+      <label class="layui-form-label">值</label>
+	    <div class="layui-input-inline">
+	      <input type="text" name="value" autocomplete="off" class="layui-input"/>
+	    </div>
+      <label class="layui-form-label">默认值</label>
+	    <div class="layui-input-inline">
+	      <input type="text" name="defaultValue"  autocomplete="off" class="layui-input"/>
+	    </div>
+	  </div>
+	  <hr/>
+	  <div class="layui-form-item" style="text-align: center;">
+	      <button class="layui-btn" lay-submit="" lay-filter="addRow">新增</button>
+	      <button type="button" class="layui-btn layui-btn-primary" function="close">关闭</button>
+	  </div>
+	</form>
+	</div>
+</div>
+</div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d506ef94f6ea5b1b6824728a5e476535";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</body>
+</html>

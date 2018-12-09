@@ -1,0 +1,79 @@
+{
+
+
+    "title": "fsLayui2.0开发文档",
+    "author": "fallsea",
+    "description": "fsLayui是一个基于layui的前端快速开发框架，通过简单的配置，实现前端页面的增删改查处理，减少前端js重复开发的工作量，提供常用的组件，实现高效开发。",
+    "language": "zh-hans",
+    "links" : {
+        "sidebar" : {
+            "社区提问" : "https://github.com/wueasy/fslayui/issues"
+        }
+    },
+    "plugins": [
+        "-sharing",
+        "-lunr",
+        "-search",
+        "search-plus",
+        "prism",
+        "prism-themes",
+        "-highlight",
+        "include-codeblock",
+        "splitter",
+        "emphasize",
+        "advanced-emoji",
+        "tbfed-pagefooter",
+        "expandable-chapters-small",
+        "alerts",
+        "chart",
+        "simple-page-toc",
+        "anchor-navigation-ex"
+    ],
+    "pluginsConfig": {
+        "theme-default": {
+            "showLevel": false
+        },
+        "prism": {
+            "css": [
+                "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+            ]
+        },
+        "include-codeblock": {
+            "template": "ace",
+            "unindent": true,
+            "theme": "monokai"
+        },
+        "tbfed-pagefooter": {
+            "copyright":"Copyright &copy wueasy.com 2018",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "chart": {
+            "type": "c3"
+        },
+        "anchor-navigation-ex": {
+            "showLevel":false,
+            "isShowTocTitleIcon": true,
+            "tocLevel1Icon": "fa fa-hand-o-right",
+            "tocLevel2Icon": "fa fa-hand-o-right",
+            "tocLevel3Icon": "fa fa-hand-o-right"
+        },
+        "expandable-chapters-small":{},
+        "simple-page-toc": {
+            "maxDepth": 3,
+            "skipFirstH1": true
+        }
+    },
+    "pdf": {
+        "pageNumbers": true,
+        "fontFamily": "Arial",
+        "fontSize": 14,
+        "paperSize": "a4",
+        "margin": {
+            "right": 62,
+            "left": 62,
+            "top": 56,
+            "bottom": 56
+        }
+    }
+}

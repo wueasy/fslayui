@@ -16,8 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 /**
- * @Description: form表单工具
- * @Copyright: 2017 wueasy.com Inc. All rights reserved.
+ * form表单工具
  * @author: fallsea
  * @version 2.2.0
  */

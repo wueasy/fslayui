@@ -16,8 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 /**
- * @Description: 通用框架
- * @Copyright: 2017 wueasy.com Inc. All rights reserved.
+ * 通用框架
  * @author: fallsea
  * @version 2.2.0
  */

@@ -16,8 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 /**
- * @Description: datagrid工具
- * @Copyright: 2017 wueasy.com Inc. All rights reserved.
+ * datagrid工具
  * @author: fallsea
  * @version 2.2.0
  */

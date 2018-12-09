@@ -16,8 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 /**
- * @Description: 基础配置
- * @Copyright: 2017 wueasy.com Inc. All rights reserved.
+ * 基础配置
  * @author: fallsea
  * @version 2.2.0
  */
