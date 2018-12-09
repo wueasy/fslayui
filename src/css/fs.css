@@ -134,3 +134,5 @@ fieldset { min-width: 100px; }
 
 .layui-tab-card>.layui-tab-title .layui-this{background-color:#FAFBFC;}
 .layui-tab-title .layui-this{color:#6190E8;font-weight:bold;}
+.fsSlider{display: none;}
+.fsRate{display: none;}
