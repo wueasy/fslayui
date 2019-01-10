@@ -1,6 +1,6 @@
 /*
  * fsLayui - A Front-end Rapid Development Framework.
- * Copyright (C) 2017-2018 wueasy.com
+ * Copyright (C) 2017-2019 wueasy.com
 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -31,7 +31,7 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig'], function(){
 	fsMenu.render();
 
 	//初始化显示菜单
-	showMenu($("#fsTopMenu li.layui-this").attr("dataPid"));
+	showMenu($("#fsTopMenu li.layui-this").attr("dataPid"),$("#fsTopMenu li.layui-this"));
 
 	if (window.attachEvent) {
 	  window.attachEvent("hashchange", hashChanged);
