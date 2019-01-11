@@ -166,8 +166,8 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 			if ($.isEmpty(method)) {
 				method = "post";
 			}
-			//打开加载层
-			var index = layer.load();
+			//打开加载层C
+			var index = layer.load(0,{shade:[0.1,'#FAFBF']});
 			$.ajax({
 				url : url,
 				type : method,

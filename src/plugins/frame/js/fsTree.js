@@ -199,7 +199,7 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 
 		var setting = {
 			view: {
-				showLine: false
+				showLine: true
 			},
 			data: {
 				key : {

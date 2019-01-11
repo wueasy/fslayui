@@ -203,11 +203,11 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
     ,'{{# } }}'
 
     ,'<div class="layui-table-box">'
-      ,'{{# if(d.loading){ }}'
+     /* ,'{{# if(d.loading){ }}'
       ,'<div class="layui-table-init" style="background-color: #fff;">'
         ,'<i class="layui-icon layui-icon-loading layui-icon"></i>'
       ,'</div>'
-      ,'{{# } }}'
+      ,'{{# } }}'*/
 
       ,'{{# var left, right; }}'
       ,'<div class="layui-table-header">'
@@ -283,7 +283,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
   //默认配置
   Class.prototype.config = {
     limit: 10 //每页显示的数量
-    ,loading: true //请求数据时，是否显示loading
+    ,loading: false //请求数据时，是否显示loading
     ,cellMinWidth: 60 //所有单元格默认最小宽度
     ,defaultToolbar: ['filter', 'exports', 'print'] //工具栏右侧图标
     ,text: {
@@ -709,6 +709,8 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
         data = JSON.stringify(data);
       }
 
+      var indexAjax = layer.load(0,{shade:[0.1,'#FAFBF']});
+
       $.ajax({
         type: options.method || 'get'
         ,url: options.url
@@ -749,7 +751,11 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
           that.renderForm();
           that.setColsWidth();
           that.layMain.append('<div class="'+ NONE +'">数据接口请求异常</div>');
-        }
+        },
+        complete : function(XMLHttpRequest, textStatus) {
+			//关闭加载层
+			layer.close(indexAjax);
+		}
       });
     } else if(options.data && options.data.constructor === Array){ //已知数据
       var res = {}
@@ -1111,7 +1117,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
 
   //请求loading
   Class.prototype.loading = function(hide){
-    var that = this
+	  var that = this
     ,options = that.config;
     if(options.loading){
       if(hide){
@@ -1120,7 +1126,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
         that.layBox.find(ELEM_INIT).remove()
       } else {
         that.layInit = $(['<div class="layui-table-init">'
-          ,'<i class="layui-icon layui-icon-loading layui-icon"></i>'
+          ,'<i class="layui-icon layui-icon-loading layui-layer-loading1"></i>'
         ,'</div>'].join(''));
         that.layBox.append(that.layInit);
       }
