@@ -1,5 +1,14 @@
 # fsLayui2
 
+[![](https://img.shields.io/github/stars/wueasy/fslayui.svg)](https://github.com/wueasy/fslayui/stargazers)
+[![](https://img.shields.io/github/forks/wueasy/fslayui.svg)](https://github.com/wueasy/fslayui/network/members)
+[![](https://img.shields.io/github/release/wueasy/fslayui.svg)](https://github.com/wueasy/fslayui/releases)
+[![](https://img.shields.io/github/issues/wueasy/fslayui.svg)](https://github.com/wueasy/fslayui/issues)
+[![](https://img.shields.io/badge/License-AGPL3.0-yellow.svg?style=flat-square)](https://github.com/wueasy/fslayui/blob/master/LICENSE)
+[![star](https://gitee.com/wueasy/fslayui/badge/star.svg?theme=dark)](https://gitee.com/wueasy/fslayui/stargazers)
+[![fork](https://gitee.com/wueasy/fslayui/badge/fork.svg?theme=dark)](https://gitee.com/wueasy/fslayui/members)
+
+
 > **fsLayui2** 是一个前端快速开发框架，支持数据表格增删改查操作，提供通用的组件，通过配置html实现数据请求，减少前端js重复开发的工作。目前支持单数据表格、多数据表格、树+数据表格、联动数据表格、富文本编辑器、下拉框联动、数据字典功能、表格编辑和提交等。  
 
 
