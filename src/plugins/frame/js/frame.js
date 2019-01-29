@@ -40,7 +40,6 @@ layui.use(['fsForm','fsDatagrid','fsTree','fsCommon','element'], function(){
       }else{
       	//深度拷贝对象
       	forms[formId] = $.extend(true,{},form);
-				console.log(forms[formId]);
       }
     });
 	}
