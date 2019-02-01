@@ -18,7 +18,7 @@
 /**
  * form表单工具
  * @author: fallsea
- * @version 2.2.0
+ * @version 2.2.1
  */
 layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], function(exports){
   var layer = layui.layer,

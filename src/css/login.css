@@ -1,6 +1,6 @@
 /*
  * fsLayui - A Front-end Rapid Development Framework.
- * Copyright (C) 2017-2018 wueasy.com
+ * Copyright (C) 2017-2019 wueasy.com
 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published

@@ -18,7 +18,7 @@
 /**
  * 菜单管理
  * @author: fallsea
- * @version 2.2.0
+ * @version 2.2.1
  */
 layui.define(['element'], function(exports){
   var element = layui.element,

@@ -18,7 +18,7 @@
 /**
  * 按钮拓展配置
  * @author: fallsea
- * @version 2.2.0
+ * @version 2.2.1
  */
 layui.define(['fsConfig'], function (exports) {
 
