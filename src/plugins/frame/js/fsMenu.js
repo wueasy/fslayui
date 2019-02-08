@@ -93,7 +93,6 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 	 * 清空菜单
 	 */
 	FsMenu.prototype.cleanMenu = function(){
-		$("#fsTopMenu").html("");
 		$("#fsLeftMenu").html("");
 	}
 
@@ -111,7 +110,7 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 				if(!$.isEmpty(menuConfig.defaultSelectLeftMenuId) && menuConfig.defaultSelectLeftMenuId == v[menuConfig.menuIdField]){//默认选中处理
 					menuRow3 += ' class="layui-this"';
 				}
-				menuRow3 += ' lay-id="'+v[menuConfig.menuIdField]+'"><a href="javascript:;" menuId="'+v[menuConfig.menuIdField]+'" dataUrl="'+ (!$.isEmpty(v["children"]) ? '' : v[menuConfig.menuHrefField]) +'">'+thisMenu.getIcon(v[menuConfig.menuIconField])+' <cite>'+v[menuConfig.menuNameField]+'</cite></a>';
+				menuRow3 += ' lay-id="'+v[menuConfig.menuIdField]+'"><a href="javascript:;" menuId="'+v[menuConfig.menuIdField]+'" dataUrl="'+ (!$.isEmpty(v["children"]) ? '' : v[menuConfig.menuHrefField]) +'">'+thisMenu.getIcon(v[menuConfig.menuIconField])+' <em>'+v[menuConfig.menuNameField]+'</em></a>';
 				content += menuRow3;
 
 				//多级处理
@@ -132,7 +131,6 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 		if(!$.isEmpty(data)){
 			var _index = 0;
 			//显示顶部一级菜单
-			var fsTopMenuElem = $("#fsTopMenu");
 			var fsLeftMenu = $("#fsLeftMenu");
 
 			var rootMenuId = menuConfig.rootMenuId;
@@ -145,32 +143,19 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 			if(!$.isEmpty(menuTree)){
 				//一级菜单处理，头部导航菜单
 				$(menuTree).each(function(i1,v){
-					var topStr = '<li class="layui-nav-item';
-					if(i1===0){
-						topStr += ' layui-this';
+					var menuRow = '<li class="layui-nav-item';
+					menuRow += '" lay-id="'+v[menuConfig.menuIdField]+'"><a href="javascript:;" menuId="'+v[menuConfig.menuIdField]+'" dataUrl="'+v[menuConfig.menuHrefField]+'">'+thisMenu.getIcon(v[menuConfig.menuIconField])+' <em>'+v[menuConfig.menuNameField]+'</em></a>';
+					//fsTopMenuElem.append(topStr);
+
+					//处理子集菜单
+					var xcontent  = thisMenu.handleLeftMenuData(v["children"]);
+
+					if(!$.isEmpty(xcontent)){
+						menuRow += xcontent;
 					}
-					topStr += '" dataPid="'+v[menuConfig.menuIdField]+'"><a href="javascript:;" menuId="'+v[menuConfig.menuIdField]+'" dataUrl="'+v[menuConfig.menuHrefField]+'">'+thisMenu.getIcon(v[menuConfig.menuIconField])+' <cite>'+v[menuConfig.menuNameField]+'</cite></a></li>';
-					fsTopMenuElem.append(topStr);
+					menuRow += '</li>';
 
-					//显示二级菜单
-					if(!$.isEmpty(v["children"])){
-						$.each(v["children"],function(i2,v2){
-							var menuRow = '<li class="layui-nav-item';
-							if(!$.isEmpty(menuConfig.defaultSelectLeftMenuId) && menuConfig.defaultSelectLeftMenuId == v2[menuConfig.menuIdField]){//默认选中处理
-								menuRow += ' layui-this';
-							}
-							menuRow += '" lay-id="'+v2[menuConfig.menuIdField]+'" dataPid="'+v2[menuConfig.parentMenuIdField]+'" style="display: none;"><a href="javascript:;" menuId="'+v2[menuConfig.menuIdField]+'" dataUrl="'+v2[menuConfig.menuHrefField]+'">'+thisMenu.getIcon(v2[menuConfig.menuIconField])+' <cite>'+v2[menuConfig.menuNameField]+'</cite></a>';
-							//处理子集菜单
-							var xcontent  = thisMenu.handleLeftMenuData(v2["children"]);
-
-							if(!$.isEmpty(xcontent)){
-								menuRow += xcontent;
-							}
-							menuRow += '</li>';
-
-							fsLeftMenu.append(menuRow);
-						});
-					}
+					fsLeftMenu.append(menuRow);
 
 				});
 

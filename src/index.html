@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
 	<meta content="text/html;charset=UTF-8"/>
@@ -20,91 +20,71 @@
 	<link href="./plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="./plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
 	<link href="./plugins/toastr/toastr.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" type="text/css" href="./plugins/layui/css/layui.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="./plugins/layui/css/layui.css"/>
+	<link rel="stylesheet" href="./css/admin.css">
 	<script type="text/javascript" src="./plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="./plugins/encrypt/jsencrypt.min.js"></script>
 	<script src="./plugins/contextMenu/jquery.contextMenu.min.js"></script>
 	<script type="text/javascript" src="./plugins/ztree/js/jquery.ztree.all.min.js"></script>
 	<script src="./plugins/toastr/toastr.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="./css/fs.css?v=2.1.1" media="all"/>
 	<script type="text/javascript" src="./plugins/layui/layui.js"></script>
 	<script type="text/javascript" src="./plugins/frame/js/fsDict.js?v=2.1.1"></script>
 	<script type="text/javascript" src="./plugins/frame/js/fs.js?v=2.1.1"></script>
 	<script type="text/javascript" src="./plugins/frame/js/main.js"></script>
 </head>
-<body>
-<div class="layui-layout layui-layout-admin">
+<<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header custom-header">
 
-  <!-- 顶部 -->
-  <div class="layui-header">
-    <a href="./index.html" class="layui-hide-xs"><div class="layui-logo">fsLayui2.0</div></a>
-    <a href="javascript:;" class="layui-hide-xs"><div class="fsSwitchMenu"><i class="fa fa-outdent"></i></div></a>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item slide-sidebar" lay-unselect>
+                    <a href="javascript:;" class="icon-font"><i class="ai ai-menufold"></i></a>
+                </li>
+            </ul>
 
-    <!-- 顶部菜单 -->
-    <ul class="layui-nav layui-layout-left fsTopMenu" id="fsTopMenu" lay-filter="fsTopMenu">
-    </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">FallSea</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">帮助中心</a></dd>
+                        <dd><a href="login.html">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
 
-    <ul class="layui-nav layui-layout-right">
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="javascript:;">
-        	<img src="https://q.qlogo.cn/qqapp/101235792/5F344D27449D79D64FE873AF8E907139/100" class="layui-nav-img">
-         	FallSea
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="javascript:;">基本资料</a></dd>
-          <dd><a href="javascript:;">安全设置</a></dd>
-        </dl>
-      </li>
-      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;"><i class="fa fa-sign-out"></i> 退出</a></li>
-    </ul>
-  </div>
+        <div class="layui-side custom-admin">
+            <div class="layui-side-scroll">
 
-  <!-- 左边菜单 -->
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree fsLeftMenu"  lay-filter="fsLeftMenu" lay-shrink="all" id="fsLeftMenu">
-      </ul>
+                <div class="custom-logo">
+                    <img src="assets/images/logo.png" alt=""/>
+                    <h1>fsLayui2</h1>
+                </div>
+                <ul class="layui-nav layui-nav-tree fsLeftMenu"  lay-filter="fsLeftMenu" lay-shrink="all" id="fsLeftMenu">
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="layui-body">
+             <div class="layui-tab app-container fsTab" lay-filter="fsTab" lay-allowClose="true">
+                <ul id="fsTabMenu" class="layui-tab-title custom-tab">
+									<li class="layui-this"><i class="layui-icon">&#xe68e;</i><em>控制台</em><p class="layui-tab-close" style="display: none;"></p></li>
+								</ul>
+                <div id="appTabPage" class="layui-tab-content">
+									<div class="layui-tab-item layui-show" lay-id="1">
+										<iframe src="views/home/index.html?v=2.1.1" frameborder="0"></iframe>
+									</div>
+								</div>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <p>© 2017-2019 <a href="https://www.wueasy.com" target="_blank">wueasy 开源</a> <a  target="_blank" href="https://github.com/wueasy/fslayui/releases"><img src="https://camo.githubusercontent.com/24482e393a2d2494871a793795ce115a7c0a6e00/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f72656c656173652f7775656173792f66736c617975692e737667" alt="" data-canonical-src="https://img.shields.io/github/release/wueasy/fslayui.svg" style="max-width:100%;"></a> <a target="_blank" href="https://github.com/wueasy/fslayui/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/a2195b8efb19313370ef012d91b9f538a82ada7b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4147504c332e302d79656c6c6f772e7376673f7374796c653d666c61742d737175617265" alt="" data-canonical-src="https://img.shields.io/badge/License-AGPL3.0-yellow.svg?style=flat-square" style="max-width:100%;"></a></p>
+        </div>
+
+        <div class="mobile-mask"></div>
     </div>
-  </div>
-
-  <!-- 右边内容区域 -->
-  <div class="layui-body layui-form">
-  	<div class="layui-tab layui-tab-card fsTab" lay-filter="fsTab" lay-allowClose="true">
-
-  		<!-- 菜单导航 -->
-		<ul class="layui-tab-title" id="fsTabMenu"  style="position:static;">
-			<li class="layui-this" lay-id="111"><i class="layui-icon">&#xe68e;</i><cite>首页</cite><p class="layui-tab-close" style="display: none;"></p></li>
-		</ul
-
-		<!-- 内容 -->
-		<div class="layui-tab-content">
-			<div class="layui-tab-item layui-show" lay-id="1">
-				<iframe src="views/home/index.html?v=2.1.1"></iframe>
-			</div>
-		</div>
-	</div>
-  </div>
-
-  <div class="layui-footer">
-    <!-- 底部固定区域 -->
-    © 2017-2019 <a href="https://www.wueasy.com" target="_blank">wueasy 开源</a> <a  target="_blank" href="https://github.com/wueasy/fslayui/releases"><img src="https://camo.githubusercontent.com/24482e393a2d2494871a793795ce115a7c0a6e00/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f72656c656173652f7775656173792f66736c617975692e737667" alt="" data-canonical-src="https://img.shields.io/github/release/wueasy/fslayui.svg" style="max-width:100%;"></a> <a target="_blank" href="https://github.com/wueasy/fslayui/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/a2195b8efb19313370ef012d91b9f538a82ada7b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4147504c332e302d79656c6c6f772e7376673f7374796c653d666c61742d737175617265" alt="" data-canonical-src="https://img.shields.io/badge/License-AGPL3.0-yellow.svg?style=flat-square" style="max-width:100%;"></a>
-  </div>
-</div>
-
-<!-- 移动导航 -->
-<div class="site-tree-mobile layui-hide">
-  <i class="layui-icon">&#xe602;</i>
-</div>
-<div class="site-mobile-shade"></div>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?d506ef94f6ea5b1b6824728a5e476535";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 </body>
 </html>

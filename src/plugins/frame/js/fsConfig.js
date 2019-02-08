@@ -46,7 +46,7 @@ layui.define([], function (exports) {
 		"loadDataType":"1",//加载数据类型，1：使用缓存数据，0：实时查询，默认0  （编辑或查看是否取缓存数据）
 		"datagridSubmitType":"1",//数据表格提交类型，1：原数据提交，2：增删改标签提交（fsType）， 默认1
 		"notifyType" : "toastr",//提醒类型，默认layer，执行消息提示类型
-		//"tableHeight" : "full-108",//默认table高度，默认full-155
+		"tableHeight" : "full-125",//默认table高度，默认full-155
 		"rsaKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDzlPObayOD1prtJloDYS2YCj/FXlN0PXnxiMjgHHBLWJ18KL58Q/SQCfx0aSFkU4nf5QAZeJDp+0ALzrtIk3Y4fUqSxoRTjOfheSM6e/HS66+97BOhw4iqxyYwoZDMAd4QSi+7sbhBWNYKnJFoWgjazvv1ZoUpzF5Wnh6n+WhPTQIDAQAB",
 		"result" : { //响应结果配置
 	    "statusName": "errorNo", //数据状态的字段名称，默认：errorNo
@@ -136,12 +136,9 @@ layui.define([], function (exports) {
 		menuHrefField : "menuHref" , //菜单链接
 		parentMenuIdField : "parentMenuId" ,//父菜单id
 		data : [
-			{"menuId":"1","menuName":"控制台","menuIcon":"fa-cog","menuHref":"","parentMenuId":0},
-			{"menuId":"2","menuName":"测试","menuIcon":"","menuHref":"","parentMenuId":0},
-			{"menuId":"3","menuName":"登录","menuIcon":"","menuHref":"login.html","parentMenuId":0},
-			{"menuId":"11","menuName":"案例","menuIcon":"fa-table","menuHref":"","parentMenuId":"1"},
-			{"menuId":"13","menuName":"组件","menuIcon":"","menuHref":"","parentMenuId":"1"},
-			{"menuId":"12","menuName":"其他页面","menuIcon":"","menuHref":"","parentMenuId":"1"},
+			{"menuId":"11","menuName":"案例","menuIcon":"fa-table","menuHref":"","parentMenuId":0},
+			{"menuId":"13","menuName":"组件","menuIcon":"","menuHref":"","parentMenuId":0},
+			{"menuId":"12","menuName":"其他页面","menuIcon":"","menuHref":"","parentMenuId":0},
 			{"menuId":"111","menuName":"首页","menuIcon":"&#xe68e;","menuHref":"views/home/index.html","parentMenuId":"11"},
 			{"menuId":"changelog","menuName":"版本记录","menuIcon":"&#xe68e;","menuHref":"views/changelog/index.html","parentMenuId":"11"},
 			{"menuId":"datagrid","menuName":"数据表格","menuIcon":"fa-list","menuHref":"views/datagrid/index.html","parentMenuId":"11"},
@@ -157,24 +154,19 @@ layui.define([], function (exports) {
 			{"menuId":"123","menuName":"500","menuIcon":"<i class=\"layui-icon\">&#xe61c;</i>","menuHref":"500.html","parentMenuId":"12"},
 			{"menuId":"124","menuName":"501","menuIcon":"<i class=\"layui-icon\">&#xe61c;</i>","menuHref":"501.html","parentMenuId":"12"},
 			{"menuId":"125","menuName":"503","menuIcon":"<i class=\"layui-icon\">&#xe61c;</i>","menuHref":"503.html","parentMenuId":"12"},
-			{"menuId":"21","menuName":"基本元素","menuIcon":"","menuHref":"","parentMenuId":"2"},
-			{"menuId":"22","menuName":"徽章","menuIcon":"","menuHref":"https://www.layui.com/demo/badge.html","parentMenuId":"2"},
-			{"menuId":"23","menuName":"数据表格","menuIcon":"","menuHref":"https://www.layui.com/demo/table.html","parentMenuId":"2"},
-			{"menuId":"211","menuName":"按钮","menuIcon":"","menuHref":"https://www.layui.com/demo/button.html","parentMenuId":"21"},
-			{"menuId":"212","menuName":"表单","menuIcon":"","menuHref":"https://www.layui.com/demo/form.html","parentMenuId":"21"},
-			{"menuId":"213","menuName":"选项卡","menuIcon":"","menuHref":"https://www.layui.com/demo/tab.html","parentMenuId":"21"},
+			{"menuId":"126","menuName":"登录","menuIcon":"","menuHref":"login.html","parentMenuId":"12"},
 			{"menuId":"date","menuName":"日期时间","menuIcon":"","menuHref":"views/component/date.html","parentMenuId":"13"},
 			{"menuId":"tinymce","menuName":"富文本编辑器","menuIcon":"","menuHref":"views/component/tinymce.html","parentMenuId":"13"},
 			{"menuId":"dict","menuName":"动态字典","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"13"},
 			{"menuId":"file","menuName":"附件上传","menuIcon":"","menuHref":"views/component/file.html","parentMenuId":"13"},
 			{"menuId":"form","menuName":"表单回调","menuIcon":"","menuHref":"views/component/form.html","parentMenuId":"13"},
-			{"menuId":"test1","menuName":"三级菜单演示","menuIcon":"","menuHref":"","parentMenuId":"1"},
+			{"menuId":"test1","menuName":"三级菜单演示","menuIcon":"","menuHref":"","parentMenuId":0},
 			{"menuId":"test11","menuName":"后台模版","menuIcon":"","menuHref":"","parentMenuId":"test1"},
 			{"menuId":"test12","menuName":"测试12","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"test1"},
 			{"menuId":"test111","menuName":"组件一","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"test11"},
 			{"menuId":"test112","menuName":"组件二","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"test11"},
 			{"menuId":"test113","menuName":"组件三","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"test11"},
-			{"menuId":"wx1","menuName":"无限级菜单测试","menuIcon":"","menuHref":"","parentMenuId":"1"},
+			{"menuId":"wx1","menuName":"无限级菜单测试","menuIcon":"","menuHref":"","parentMenuId":0},
 			{"menuId":"wx11","menuName":"二级1","menuIcon":"","menuHref":"","parentMenuId":"wx1"},
 			{"menuId":"wx12","menuName":"二级2","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"wx1"},
 			{"menuId":"wx111","menuName":"三级1","menuIcon":"","menuHref":"views/component/dict.html","parentMenuId":"wx11"},

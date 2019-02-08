@@ -15,25 +15,142 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-html{background-color:#FAFBFC;color:#666;}
+ .layui-view-body{
+     background-color: #f0f2f5;
+ }
 
+ .layui-content{
+     padding: 10px;
+ }
 
-/*公共样式*/
-.childrenBody {
-    margin: 10px 10px 0;
-}
+ .layui-tab-title{
+     border-bottom-color: #e8e8e8;
+ }
+ .layui-card .layui-tab-brief .layui-tab-title li{
+     margin:0 15px;
+     padding: 0;
+ }
 
-.menu-tree-this {
-	color : #009688;
-}
-fieldset { min-width: 100px; }
+ .layui-form-checked i, .layui-form-checked:hover i,
+ .layui-form-radio>i:hover, .layui-form-radioed>i,
+ .layui-breadcrumb a:hover,
+ .layui-laypage a:hover,
+ .layui-tab-brief>.layui-tab-title .layui-this{
+     color: #177ce3!important;
+ }
 
+ .layui-btn-primary:hover,
+ .layui-form-onswitch,
+ .layui-form-checked[lay-skin=primary] i,
+ .layui-form-checkbox[lay-skin=primary]:hover i,
+ .layui-form-checked, .layui-form-checked:hover,
+ .layui-tab-brief>.layui-tab-more li.layui-this:after,
+ .layui-tab-brief>.layui-tab-title .layui-this:after{
+     border-color: #177ce3;
+ }
 
-.layui-fluid{position:relative;margin:0 auto;padding:10px;}
+ .layui-checkbox-disbaled[lay-skin=primary]:hover i {
+     border-color: #d2d2d2!important;
+ }
 
+ .layui-form-onswitch,
+ .layui-form-checked[lay-skin=primary] i,
+ .layui-form-select dl dd.layui-this,
+ .layui-laypage .layui-laypage-curr .layui-laypage-em,
+ .layui-form-checked span, .layui-form-checked:hover span{
+     background-color: #177ce3;
+ }
+ .layui-btn-blue{
+     background-color: #177ce3;
+     background-repeat: repeat-y;
+     background-image: -moz-linear-gradient(left,#29adeb,#177ce3);
+     background-image: -webkit-linear-gradient(left,#29adeb,#177ce3);
+     background-image: -o-linear-gradient(left,#29adeb,#177ce3);
+     background-image: linear-gradient(left,#29adeb,#177ce3);
+ }
 
+ .layui-form-checkbox[lay-skin=primary]:hover span{
+     background: 0 0!important;
+ }
 
-.layui-table-view{position:relative;margin:5px 0 0 0;overflow:hidden;}
+ .layui-page-header{
+     margin: -10px -10px 10px;
+ }
+
+ .layui-page-header .pagewrap{
+     padding: 10px 20px;
+     background-color: #fff;
+ }
+
+ .layui-page-header .title{
+     margin-top: 15px;
+ }
+
+ .chart-card{
+     padding: 20px 24px 8px;
+ }
+
+ .chart-card .chart-header{
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+ }
+
+ .chart-card .metawrap{
+     float: left;
+ }
+
+ .chart-card .metawrap .meta{
+     color: rgba(0,0,0,.45);
+     font-size: 14px;
+     line-height: 22px;
+     height: 22px;
+ }
+
+ .chart-card .metawrap .total{
+     overflow: hidden;
+     text-overflow: ellipsis;
+     word-break: break-all;
+     white-space: nowrap;
+     color: rgba(0,0,0,.85);
+     margin-top: 4px;
+     margin-bottom: 0;
+     font-size: 30px;
+     line-height: 38px;
+     height: 38px;
+ }
+
+ .chart-card .chart-body{
+     margin-bottom: 12px;
+     position: relative;
+     width: 100%;
+ }
+
+ .chart-card .chart-footer{
+     padding-top: 9px;
+     margin-top: 8px;
+     border-top: 1px solid #e8e8e8;
+     -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+ }
+
+ .chart-card .field{
+
+ }
+
+ .chart-card .field span{
+     font-size: 14px;
+     line-height: 22px;
+ }
+
+ .chart-card .field span:last-child{
+     margin-left: 8px;
+     color: rgba(0,0,0,.85);
+ }
+
+ .form-box{
+     padding: 10px 0;
+ }
 
 
 .layui-form-query{padding:10px 15px 0px 15px}
@@ -49,13 +166,6 @@ fieldset { min-width: 100px; }
 .fsEdit{display: none;}
 
 .fsTreeRightMenu{display: none;}
-
-.fsTab{height: 40px;margin:0;}
-.fsTab .layui-tab-title{z-index:999; top:0;height: 40px;}
-.fsTab .layui-tab-title cite{font-style:normal;}
-.fsTab .layui-tab-item{ position: absolute; top: 41px; bottom:0; left: 0; right: 0; padding: 0; margin: 0; -webkit-overflow-scrolling:touch; overflow:auto;}
-.fsTab .layui-tab-content{height:100%;padding:0;}
-.fsTab .layui-tab-content iframe{ width: 100%; height:100%; border:none; min-width: 320px; position:absolute; }
 
 .pace .pace-progress {
   background: #1E92FB; /*进度条颜色*/
@@ -91,18 +201,6 @@ fieldset { min-width: 100px; }
 .showMenu.layui-layout-admin .layui-side{ left:-200px; }
 .showMenu .layui-body,.showMenu .layui-footer{ left:0; }
 
-.layui-card{margin-bottom:15px;border-radius:2px;background-color:#fff;box-shadow:0 1px 2px 0 rgba(0,0,0,.05);}
-.layui-card:last-child{margin-bottom:0}
-.layui-card-header{height:42px;line-height:42px;padding:0 15px;border-bottom:1px solid #e6e6e6;color:#333;border-radius:2px 2px 0 0;font-size:14px}
-.layui-bg-black,.layui-bg-blue,.layui-bg-cyan,.layui-bg-green,.layui-bg-orange,.layui-bg-red{color:#fff!important}
-.layui-card-body{padding:10px 15px;line-height:24px}
-/**.layui-card-body .layui-table{margin:5px 0}**/
-.layui-card .layui-tab{margin:0}
-
-.layui-tab-card>.layui-tab-title{background-color: #fff;}
-.layui-tab-title{border-bottom-width:0px;}
-.layui-tab-card>.layui-tab-title>.layui-this{background-color:#f2f2f2;}
-
 .layui-layer-title{background-color: #fff;}
 
 #toast-container{z-index:21111111;}
@@ -124,7 +222,6 @@ fieldset { min-width: 100px; }
 
 .layui-form-label .required{margin-right:4px;color: #FF5722;font-size: 15px;font-style:normal;}
 
-.layui-nav .layui-nav-item a{padding:0 15px;}
 
 /**收缩样式**/
 .fsShrink{/* float: right; */top: 10px;cursor:pointer;color: #01AAED;}
@@ -225,10 +322,3 @@ span.tmpzTreeMove_arrow {width:16px; height:21px; display: inline-block; padding
 
 ul.ztree.zTreeDragUL {margin:0; padding:0; position:absolute; width:auto; height:auto;overflow:hidden; background-color:#cfcfcf; border:1px #00B83F dotted; opacity:0.8; filter:alpha(opacity=80)}
 .ztreeMask {z-index:10000; background-color:#cfcfcf; opacity:0.0; filter:alpha(opacity=0); position:absolute}
-
-.layui-nav .layui-this{background-color:#333333;}
-.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover{background-color:#6190E8;}
-
-.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after{background-color:#6190E8;}
-
-.layui-nav .layui-nav-item a:hover, .layui-nav .layui-this a{color:#6190E8;}

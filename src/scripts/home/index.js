@@ -15,7 +15,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-layui.use([],function(){
+layui.use(['element'],function(){
+
+  var element = layui.element;
 
 	//icon动画
   $(".panel a").hover(function(){
@@ -197,4 +199,13 @@ layui.use([],function(){
   };
 
   myChart2.setOption(option2);
+
+
+
+  element.on('tab(demo)', function(data){
+    if(data.index==0){
+    }else{
+      myChart2.resize();
+    }
+  });
 });

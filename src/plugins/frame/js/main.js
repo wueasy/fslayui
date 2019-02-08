@@ -20,8 +20,10 @@
  * @author: fallsea
  * @version 2.2.1
  */
-layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig'], function(){
+layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function(){
 	var fsTab = layui.fsTab,
+	element = layui.element,
+	layer = layui.layer,
 	fsConfig = layui.fsConfig,
 	fsCommon = layui.fsCommon,
 	statusName = $.result(fsConfig,"global.result.statusName","errorNo"),
@@ -30,105 +32,90 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig'], function(){
 
 	fsMenu.render();
 
-	//初始化显示菜单
-	showMenu($("#fsTopMenu li.layui-this").attr("dataPid"),$("#fsTopMenu li.layui-this"));
-
-	if (window.attachEvent) {
-	  window.attachEvent("hashchange", hashChanged);
-	} else if (window.addEventListener) {
-		window.addEventListener("hashchange", hashChanged, false);
-	}
-
-	hashChanged();
-
-	function hashChanged(){
-		//获取路由信息
-		var hash = window.location.hash;
-		if(!$.isEmpty(hash) && hash.length>1){
-			var menuId = hash.substring(1);
-			//获取layId
-			var dom = $('#fsLeftMenu a[menuId="'+ menuId +'"]').parent();
-			if(dom.length>0){
-				fsTab.add(dom);
-				fsTab.menuSelectCss(dom.attr("lay-id"));
-			}
-		}
-	}
-
-
-	$("#fsTopMenu").on("click","li",function(){
-		var dataPid = $(this).attr("dataPid");
-		var elem = $(this).find("a");
-		showMenu(dataPid,elem);
-	});
-
-
-	//显示菜单
-	function showMenu(dataPid,elem){
-		if(!$.isEmpty(dataPid)){
-			$('#fsLeftMenu>li').hide();
-			var dom = $('#fsLeftMenu>li[dataPid="'+ dataPid +'"]');
-			if(dom.length>0){
-				dom.show();
-
-				//展示菜单
-				if($(".fsSwitchMenu").find("i.fa-indent").length>0){
-					$(".fsSwitchMenu").find("i").removeClass("fa-indent").addClass("fa-outdent");
-					$(".layui-layout-admin").toggleClass("showMenu");
-				}
-
-				//默认选中第一个
-				fsTab.add(dom.eq(0));
-			}else{
-				//隐藏菜单
-				if($(".fsSwitchMenu").find("i.fa-outdent").length>0){
-					$(".fsSwitchMenu").find("i").removeClass("fa-outdent").addClass("fa-indent");
-					$(".layui-layout-admin").toggleClass("showMenu");
-				}
-	  		//如果地址不为空，打开地址
-				if(!$.isEmpty(elem)){
-					fsTab.add(elem);
-				}
-			}
-
-
-		}
-	}
 
 	//渲染tab
 	fsTab.render();
 
-	//新增tab
-	function addTab(elem){
-		fsTab.add(elem);
-	}
+	var screen_size = {
+        pc : [991, -1],
+        pad : [768, 990],
+        mobile : [0, 767]
+    }
 
-	//手机设备的简单适配
-	var treeMobile = $('.site-tree-mobile'),
-		shadeMobile = $('.site-mobile-shade')
+    var getDevice = function(){
+        var width = $(window).width();
+        for (var i in screen_size) {
+            var sizes = screen_size[i],
+                min = sizes[0],
+                max = sizes[1];
+            if(max == -1) max = width;
+            if(min <= width && max >= width){
+                return i;
+            }
+        }
+        return null;
+    }
 
-	treeMobile.on('click', function(){
-		$('body').addClass('site-mobile');
-	});
+    var isDevice = function(label){
+        return getDevice() == label;
+    }
 
-	shadeMobile.on('click', function(){
-		$('body').removeClass('site-mobile');
-	});
+    var isMobile = function(){
+        return isDevice('mobile');
+    }
+
+		var slideSideBar = function() {
+        var $slideSidebar = $('.slide-sidebar'),
+            $pageContainer = $('.layui-body'),
+            $mobileMask = $('.mobile-mask');
+
+        var isFold = false;
+        $slideSidebar.click(function(e){
+            e.preventDefault();
+            var $this = $(this), $icon = $this.find('i'),
+                $admin = $('body').find('.layui-layout-admin');
+            var toggleClass = isMobile() ? 'fold-side-bar-xs' : 'fold-side-bar';
+            if($icon.hasClass('ai-menufold')){
+                $icon.removeClass('ai-menufold').addClass('ai-menuunfold');
+                $admin.addClass(toggleClass);
+                isFold = true;
+                if(isMobile()) {
+									$mobileMask.show();
+								}else{
+									$mobileMask.hide();
+								}
+            }else{
+                $icon.removeClass('ai-menuunfold').addClass('ai-menufold');
+                $admin.removeClass(toggleClass);
+                isFold = false;
+                $mobileMask.hide();
+            }
+        });
+
+        var tipIndex;
+        // 菜单收起后的模块信息小提示
+        $('#fsLeftMenu li > a').hover(function(){
+            var $this = $(this);
+            if(isFold) {
+                tipIndex = layer.tips($this.find('em').text(),$this);
+            }
+        }, function(){
+            if(isFold && tipIndex ){
+                layer.close(tipIndex);
+                tipIndex = null
+            }
+        })
+
+        // if(isMobile()){
+            $mobileMask.click(function(){
+                $slideSidebar.trigger('click');
+            });
+        // }
+    }
+		slideSideBar();
 
 
-	//菜单绑定
-
-	$(".fsSwitchMenu").on("click",function(){
-		if($(this).find("i.fa-outdent").length>0){
-			$(this).find("i").removeClass("fa-outdent").addClass("fa-indent");
-		}else{
-			$(this).find("i").removeClass("fa-indent").addClass("fa-outdent");
-		}
-	 	$(".layui-layout-admin").toggleClass("showMenu");
-	});
-
-
-	/**
+		/**
 	 * 右边菜单
 	 */
 	$.contextMenu({
@@ -176,56 +163,5 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig'], function(){
       "closeAll": {name: "关闭全部",icon:"fa-window-close"}
     }
 	});
-
-	//退出
-	$('#logout').on('click', function () {
-		fsCommon.confirm('退出登陆提示！', '你真的确定要退出系统吗？',function()
-		{
-			fsCommon.invoke("/logout",{},function(result){
-				if(result[statusName] == "0"){
-					top.window.location.href="/login";
-				}else{
-					//提示错误消息
-					fsCommon.errorMsg(result[msgName]);
-			  }
-			});
-		});
-	});
-
-	//修改密码
-	$("#updatePwd").on("click",function(){
-		fsCommon.updatePwd("修改密码");
-	});
-
-
-	//站点切换
-	$("#group_menu").on("click","dd",function(){
-		var _this = $(this);
-		$("#group_id_main").val(_this.attr("groupId"));
-		$("#group_menu_html").html(_this.find("a").html());
-
-
-		//清空历史菜单
-		fsMenu.cleanMenu();
-
-		//重新渲染菜单
-		fsMenu.showMenu();
-
-		//初始化显示菜单
-		showMenu($("#fsTopMenu li.layui-this").attr("dataPid"));
-	});
-
-
-	$("#xiaoxi").on("click",function(){
-		addTab($(this));
-	});
-
-	//个人中心
-	$("#personal").on("click",function(){
-		addTab($(this));
-	});
-
-	//默认出发点击事件
-	$("#fsTopMenu li.layui-this").click();
 
 });
