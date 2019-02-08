@@ -28,8 +28,8 @@
 	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
 	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
 </head>
-<body>
-<div class="layui-fluid">
+<body class="layui-view-body">
+  <div class="layui-content">
   <div class="layui-row layui-col-space10">
   	 <div class="layui-col-md12">
 			 <div class="layui-card">
@@ -69,13 +69,13 @@
 						</form>
 					</div>
 					<div>
-	        	<button class="layui-btn" function="top" topUrl="views/staticDatagrid/add.html" topMode="add" topWidth="800px" topHeight="610px" topTitle="新增功能号信息">
+	        	<button class="layui-btn layui-btn-blue" function="top" topUrl="views/staticDatagrid/add.html" topMode="add" topWidth="800px" topHeight="610px" topTitle="新增功能号信息">
 						  <i class="layui-icon">&#xe654;</i>新增
 						</button>
-						<button class="layui-btn" function="top" topUrl="views/staticDatagrid/add.html" topMode="edit" topWidth="800px" topHeight="610px" isSelect="1" topTitle="编辑功能号信息" inputs="id:">
+						<button class="layui-btn layui-btn-blue" function="top" topUrl="views/staticDatagrid/add.html" topMode="edit" topWidth="800px" topHeight="610px" isSelect="1" topTitle="编辑功能号信息" inputs="id:">
 						  <i class="layui-icon">&#xe642;</i>编辑
 						</button>
-						<button class="layui-btn" function="refresh">
+						<button class="layui-btn layui-btn-blue" function="refresh">
 						  <i class="layui-icon">&#x1002;</i>刷新
 						</button>
 		      </div>
@@ -118,7 +118,7 @@
 					 </script>
 
 					 <script type="text/html" id="barDemo">
-						<a class="layui-btn layui-btn-xs" lay-event="top" topUrl="views/staticDatagrid/add.html" topMode="edit" topWidth="800px" topHeight="610px" isMaxWindow="" topTitle="编辑" inputs="id:">编辑</a>
+						<a class="layui-btn layui-btn-xs layui-btn-blue" lay-event="top" topUrl="views/staticDatagrid/add.html" topMode="edit" topWidth="800px" topHeight="610px" isMaxWindow="" topTitle="编辑" inputs="id:">编辑</a>
 					 </script>
 				</div>
 			</div>

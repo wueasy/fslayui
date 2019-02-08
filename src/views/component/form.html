@@ -32,8 +32,8 @@
 	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
 	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
 </head>
-<body>
-	<div class="layui-fluid">
+<body class="layui-view-body">
+  <div class="layui-content">
 		<div class="layui-row layui-col-space10">
 			 <div class="layui-col-md12">
 				<div class="layui-card">
@@ -46,7 +46,7 @@
 						      <input id="newPassword" type="password" name="password" lay-verType="tips" required="" lay-verify="required|length" placeholder="请输入密码" minLength="6" maxLength="30" autocomplete="off" class="layui-input fsCrypt"/>
 						    </div>
 						    <div class="layui-input-inline">
-								 <button class="layui-btn" lay-submit lay-filter="test1" requestSuccessCallback="test" url="/fsbus/DEMO1002">提交</button>
+								 <button class="layui-btn layui-btn-blue" lay-submit lay-filter="test1" requestSuccessCallback="test" url="/fsbus/DEMO1002">提交</button>
 						    </div>
 						  </div>
 						</form>

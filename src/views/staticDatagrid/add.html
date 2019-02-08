@@ -30,8 +30,8 @@
 <script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
 <script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
 </head>
-<body>
-<div class="layui-fluid">
+<body class="layui-view-body">
+  <div class="layui-content">
 	<div class="layui-row layui-col-space10">
 		<div class="layui-col-md12">
 			<div class="layui-card">
@@ -93,10 +93,10 @@
 		<div class="layui-card">
   	 	<div class="layui-card-body">
 				<div>
-					<button class="layui-btn layui-btn layui-btn-sm" function="addRow" tableId="addFsDatagrid">
+					<button class="layui-btn layui-btn layui-btn-sm layui-btn-blue" function="addRow" tableId="addFsDatagrid">
 						<i class="layui-icon">&#xe654;</i>新增
 					</button>
-					<button class="layui-btn layui-btn layui-btn-sm" function="topAddRow" tableId="addFsDatagrid" topUrl="views/staticDatagrid/addRow.html" topWidth="700px" topHeight="275px" isMaxWindow="" topTitle="新增信息">
+					<button class="layui-btn layui-btn layui-btn-sm layui-btn-blue" function="topAddRow" tableId="addFsDatagrid" topUrl="views/staticDatagrid/addRow.html" topWidth="700px" topHeight="275px" isMaxWindow="" topTitle="新增信息">
 						<i class="layui-icon">&#xe654;</i>新增弹窗
 					</button>
 				</div>
@@ -112,7 +112,7 @@
 					<p fixed="right" align="center" toolbar="#barDemo" title="操作" width="150" />
 				</div>
 				<script type="text/html" id="barDemo">
-						<a class="layui-btn layui-btn-xs" lay-event="topEditRow" topUrl="views/staticDatagrid/addRow.html" topWidth="700px" topHeight="275px" isMaxWindow="" topTitle="修改信息">修改</a>
+						<a class="layui-btn layui-btn-xs layui-btn-blue" lay-event="topEditRow" topUrl="views/staticDatagrid/addRow.html" topWidth="700px" topHeight="275px" isMaxWindow="" topTitle="修改信息">修改</a>
 						<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delRow" isConfirm="1" confirmMsg="是否确定删除当前记录？">删除</a>
 				</script>
 			</div>
@@ -123,8 +123,8 @@
 		<div class="layui-card">
   	 	<div class="layui-card-body">
 				<div style="text-align: center;">
-		   	 <button class="layui-btn fsAdd" function="save" groupId="test" url="/fsbus/DEMO1008"><i class="layui-icon">&#xe609;</i>新增</button>
-		   	 <button class="layui-btn fsEdit" function="save" groupId="test" url="/fsbus/DEMO1009"><i class="layui-icon">&#xe609;</i>修改</button>
+		   	 <button class="layui-btn fsAdd layui-btn-blue" function="save" groupId="test" url="/fsbus/DEMO1008"><i class="layui-icon">&#xe609;</i>新增</button>
+		   	 <button class="layui-btn fsEdit layui-btn-blue" function="save" groupId="test" url="/fsbus/DEMO1009"><i class="layui-icon">&#xe609;</i>修改</button>
 		   	 <button type="button" class="layui-btn layui-btn-primary" function="close">关闭</button>
 		 	  </div>
 			</div>

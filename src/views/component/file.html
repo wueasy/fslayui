@@ -32,8 +32,8 @@
 	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
 	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
 </head>
-<body>
-	<div class="layui-fluid">
+<body class="layui-view-body">
+  <div class="layui-content">
 		<div class="layui-row layui-col-space10">
 			 <div class="layui-col-md12">
 				<div class="layui-card">
@@ -46,7 +46,7 @@
 						      <input type="text" id="filePath" name="filePath" autocomplete="off" disabled="disabled" class="layui-input"/>
 						    </div>
 						    <div class="layui-input-inline">
-								 <button type="button"  class="layui-btn" function="upload" fileElem="#filePath" fileAccept="file" fileExts="" fileSize="10240" inputs="type:test">上传附件</button>
+								 <button type="button"  class="layui-btn layui-btn-blue" function="upload" fileElem="#filePath" fileAccept="file" fileExts="" fileSize="10240" inputs="type:test">上传附件</button>
 						    </div>
 						  </div>
 						</form>
@@ -64,7 +64,7 @@
 								 <input type="text" id="filePath2" name="filePath" autocomplete="off" disabled="disabled" class="layui-input"/>
 							 </div>
 							 <div class="layui-input-inline">
-								<button type="button"  class="layui-btn" function="upload" fileElem="#filePath2" fileAccept="images" fileExts="" fileSize="10240" inputs="type:test">上传图片</button>
+								<button type="button"  class="layui-btn layui-btn-blue" function="upload" fileElem="#filePath2" fileAccept="images" fileExts="" fileSize="10240" inputs="type:test">上传图片</button>
 							 </div>
 						 </div>
 					 </form>

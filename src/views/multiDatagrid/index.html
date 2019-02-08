@@ -28,8 +28,8 @@
 	<script type="text/javascript" src="../../plugins/frame/js/fs.js?v=2.0.0"></script>
 	<script type="text/javascript" src="../../plugins/frame/js/frame.js?v=2.0.0"></script>
 </head>
-<body>
- <div class="layui-fluid">
+<body class="layui-view-body">
+  <div class="layui-content">
   <div class="layui-row layui-col-space10">
   <div class="layui-col-md6">
 		<div class="layui-card">
@@ -52,20 +52,20 @@
 							</div>
 							<div class="layui-inline">
 								<div class="layui-input-inline">
-									<button class="layui-btn" type="button" function="query"><i class="layui-icon">&#xe615;</i>查询</button>
+									<button class="layui-btn layui-btn-blue" type="button" function="query"><i class="layui-icon">&#xe615;</i>查询</button>
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div>
-					<button class="layui-btn" function="top" topUrl="views/datagrid/add.html" topWidth="800px" topHeight="600px" topTitle="新增demo">
+					<button class="layui-btn layui-btn-blue" function="top" topUrl="views/datagrid/add.html" topWidth="800px" topHeight="600px" topTitle="新增demo">
 						<i class="layui-icon">&#xe654;</i>新增
 					</button>
 					<button class="layui-btn layui-btn-danger" function="submit" url="/fsbus/DEMO1003" isMutiDml="1" isConfirm="1" confirmMsg="是否确定删除选中的数据？" inputs="id:">
 						<i class="layui-icon">&#xe640;</i>删除
 					</button>
-					<button class="layui-btn" function="refresh">
+					<button class="layui-btn layui-btn-blue" function="refresh">
 						<i class="layui-icon">&#x1002;</i>刷新
 					</button>
 				</div>
@@ -80,7 +80,7 @@
 				 <p fixed="right" align="center" toolbar="#barDemo" title="操作" width="150"/>
 			  </div>
 				 <script type="text/html" id="barDemo">
-					 <a class="layui-btn layui-btn-xs" lay-event="top" topUrl="views/datagrid/edit.html" topWidth="800px" topHeight="600px" topTitle="编辑demo" inputs="id:">编辑</a>
+					 <a class="layui-btn layui-btn-xs layui-btn-blue" lay-event="top" topUrl="views/datagrid/edit.html" topWidth="800px" topHeight="600px" topTitle="编辑demo" inputs="id:">编辑</a>
 				 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="submit" url="/fsbus/DEMO1003" isConfirm="1" confirmMsg="是否确定删除当前记录？" inputs="id:">删除</a>
 			 	</script>
 		</div>
@@ -107,20 +107,20 @@
 							</div>
 							<div class="layui-inline">
 								<div class="layui-input-inline">
-									<button class="layui-btn" type="button" function="query" tableId="fsDatagrid2"><i class="layui-icon">&#xe615;</i>查询</button>
+									<button class="layui-btn layui-btn-blue" type="button" function="query" tableId="fsDatagrid2"><i class="layui-icon">&#xe615;</i>查询</button>
 								</div>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div>
-					<button class="layui-btn" function="top" topUrl="views/datagrid/add.html" tableId="fsDatagrid2" topWidth="800px" topHeight="600px" topTitle="新增demo">
+					<button class="layui-btn layui-btn-blue" function="top" topUrl="views/datagrid/add.html" tableId="fsDatagrid2" topWidth="800px" topHeight="600px" topTitle="新增demo">
 						<i class="layui-icon">&#xe654;</i>新增
 					</button>
 					<button class="layui-btn layui-btn-danger" function="submit" tableId="fsDatagrid2" url="/fsbus/DEMO1003" isMutiDml="1" isConfirm="1" confirmMsg="是否确定删除选中的数据？" inputs="id:">
 						<i class="layui-icon">&#xe640;</i>删除
 					</button>
-					<button class="layui-btn" function="refresh" tableId="fsDatagrid2">
+					<button class="layui-btn layui-btn-blue" function="refresh" tableId="fsDatagrid2">
 						<i class="layui-icon">&#x1002;</i>刷新
 					</button>
 				</div>
@@ -136,7 +136,7 @@
 				 <p fixed="right" align="center" toolbar="#barDemo2" title="操作" width="150"/>
 			 </div>
 				 <script type="text/html" id="barDemo2">
-					<a class="layui-btn layui-btn-xs" lay-event="top" topUrl="views/datagrid/edit.html" topWidth="800px" topHeight="600px" topTitle="编辑demo" inputs="id:">编辑</a>
+					<a class="layui-btn layui-btn-xs layui-btn-blue" lay-event="top" topUrl="views/datagrid/edit.html" topWidth="800px" topHeight="600px" topTitle="编辑demo" inputs="id:">编辑</a>
 					<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="submit" url="/fsbus/DEMO1003" isConfirm="1" confirmMsg="是否确定删除当前记录？" inputs="id:">删除</a>
 				 </script>
 		</div>
