@@ -18,7 +18,7 @@
 /**
  * 字典配置
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 layui.fsDict = {
 		//城市

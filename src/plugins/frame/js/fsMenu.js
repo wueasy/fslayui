@@ -18,7 +18,7 @@
 /**
  * 菜单配置
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 layui.define(['element',"fsConfig","fsCommon"], function(exports){
 

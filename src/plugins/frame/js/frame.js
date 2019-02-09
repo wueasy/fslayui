@@ -18,7 +18,7 @@
 /**
  * 通用框架
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 layui.use(['fsForm','fsDatagrid','fsTree','fsCommon','element'], function(){
 	var fsForm = layui.fsForm,

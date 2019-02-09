@@ -18,7 +18,7 @@
 /**
  * 基础配置
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 layui.define([], function (exports) {
 
@@ -139,7 +139,6 @@ layui.define([], function (exports) {
 			{"menuId":"11","menuName":"案例","menuIcon":"fa-table","menuHref":"","parentMenuId":0},
 			{"menuId":"13","menuName":"组件","menuIcon":"layui-icon layui-icon-template-1","menuHref":"","parentMenuId":0},
 			{"menuId":"12","menuName":"其他页面","menuIcon":"layui-icon layui-icon-component","menuHref":"","parentMenuId":0},
-			{"menuId":"111","menuName":"首页","menuIcon":"&#xe68e;","menuHref":"views/home/index.html","parentMenuId":"11"},
 			{"menuId":"changelog","menuName":"版本记录","menuIcon":"&#xe68e;","menuHref":"views/changelog/index.html","parentMenuId":"11"},
 			{"menuId":"datagrid","menuName":"数据表格","menuIcon":"fa-list","menuHref":"views/datagrid/index.html","parentMenuId":"11"},
 			{"menuId":"datagrid2","menuName":"数据表格2","menuIcon":"fa-list","menuHref":"views/datagrid2/index.html","parentMenuId":"11"},

@@ -18,7 +18,7 @@
 /**
  * 主页面
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function(){
 	var fsTab = layui.fsTab,

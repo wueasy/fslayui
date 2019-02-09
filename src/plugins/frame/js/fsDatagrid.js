@@ -18,7 +18,7 @@
 /**
  * datagrid工具
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 layui.define(["fsCommon","table",'laypage','element','fsConfig','form','slider','rate','fsButtonCommon'], function(exports){
   var fsCommon = layui.fsCommon,

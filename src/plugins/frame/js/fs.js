@@ -18,7 +18,7 @@
 /**
  * 入口
  * @author: fallsea
- * @version 2.2.1
+ * @version 2.3.0
  */
 //工具
 layui.fsUtil={};
