@@ -45,26 +45,6 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 				time = 5000;
 			}
 			if (notifyType == "toastr") {
-				/**
-				 * toastr提醒配置
-				 */
-				top.toastr.options = {
-				  "closeButton": true,
-				  "debug": false,
-				  "newestOnTop": false,
-				  "progressBar": true,
-				  "positionClass": "toast-top-right",
-				  "preventDuplicates": false,
-				  "onclick": null,
-				  "showDuration": "300",
-				  "hideDuration": "1000",
-				  "timeOut": time,
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-				};
 				top.toastr.error(text);
 			} else {
 				top.layer.msg(text, {
@@ -79,26 +59,6 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 				time = 5000;
 			}
 			if (notifyType == "toastr") {
-				/**
-				 * toastr提醒配置
-				 */
-				top.toastr.options = {
-				  "closeButton": true,
-				  "debug": false,
-				  "newestOnTop": false,
-				  "progressBar": true,
-				  "positionClass": "toast-top-right",
-				  "preventDuplicates": false,
-				  "onclick": null,
-				  "showDuration": "300",
-				  "hideDuration": "1000",
-				  "timeOut": time,
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-				};
 				top.toastr.success(text);
 			} else {
 				top.layer.msg(text, {
@@ -113,26 +73,6 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 				time = 5000;
 			}
 			if (notifyType == "toastr") {
-				/**
-				 * toastr提醒配置
-				 */
-				top.toastr.options = {
-				  "closeButton": true,
-				  "debug": false,
-				  "newestOnTop": false,
-				  "progressBar": true,
-				  "positionClass": "toast-top-right",
-				  "preventDuplicates": false,
-				  "onclick": null,
-				  "showDuration": "300",
-				  "hideDuration": "1000",
-				  "timeOut": time,
-				  "extendedTimeOut": "1000",
-				  "showEasing": "swing",
-				  "hideEasing": "linear",
-				  "showMethod": "fadeIn",
-				  "hideMethod": "fadeOut"
-				};
 				top.toastr.warning(text);
 			} else {
 				top.layer.msg(text, {
