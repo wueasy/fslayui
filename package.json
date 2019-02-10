@@ -1,6 +1,6 @@
 {
   "name": "fsLayui",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "fsLayui是一个基于layui的前端快速开发框架，通过简单的配置，实现前端页面的增删改查处理，减少前端js重复开发的工作量，提供常用的组件，实现高效开发。",
   "scripts": {
     "start": "start http://localhost:3000 & node app.js"
