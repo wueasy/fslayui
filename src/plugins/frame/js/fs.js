@@ -20,6 +20,11 @@
  * @author: fallsea
  * @version 2.3.0
  */
+layui.config({
+	base : "/plugins/frame/js/",//设定扩展的Layui模块的所在目录，一般用于外部模块扩展
+	version : '2.3.0'
+});
+
 //工具
 layui.fsUtil={};
 
@@ -549,11 +554,3 @@ function getRootPath(type){
     });
     return path;
 }
-
-//获取根目录
-var rootPath = getRootPath("1");
-
-layui.config({
-  base : rootPath+"plugins/frame/js/",//设定扩展的Layui模块的所在目录，一般用于外部模块扩展
-	version : '2.1.2'
-});
