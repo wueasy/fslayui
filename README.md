@@ -11,9 +11,9 @@
 
 > **fsLayui2** 是一个前端快速开发框架，支持数据表格增删改查操作，提供通用的组件，通过配置html实现数据请求，减少前端js重复开发的工作。目前支持单数据表格、多数据表格、树+数据表格、联动数据表格、富文本编辑器、下拉框联动、数据字典功能、表格编辑和提交等。  
 
-## 智能客服
+## 帮助中心
 
-遇到问题可以先通过智能客服提问，[点击进入智能客服](https://cschat-ccs.aliyun.com/index.htm?tntInstId=_1Bd0xM0&scene=SCE00003744)
+遇到问题可以先通过帮助中心搜索或通过智能客服提问，[点击进入帮助中心](https://help-ccs.aliyun.com/help.htm?tntInstId=_1Bd0xM0&helpCode=SCE_00005152)
 
 ## 支持功能
 
