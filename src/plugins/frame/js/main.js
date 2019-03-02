@@ -106,11 +106,20 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function()
             }
         })
 
-        // if(isMobile()){
-            $mobileMask.click(function(){
-                $slideSidebar.trigger('click');
-            });
-        // }
+        $mobileMask.click(function(){
+            $slideSidebar.trigger('click');
+        });
+
+				//窗口大小变动时触发
+				window.onresize = function(){
+					var $admin = $('body').find('.layui-layout-admin');
+					var $icon = $('.slide-sidebar').find('i');
+					var toggleClass = isMobile() ? 'fold-side-bar-xs' : 'fold-side-bar';
+					if(isMobile()){
+						$admin.removeClass('fold-side-bar');
+						$icon.removeClass('ai-menuunfold').addClass('ai-menufold');
+					}
+				}
     }
 		slideSideBar();
 
