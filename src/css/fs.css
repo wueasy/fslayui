@@ -31,13 +31,13 @@
      padding: 0;
  }
 
- .layui-form-checked i, .layui-form-checked:hover i,
+ /*.layui-form-checked i, .layui-form-checked:hover i,
  .layui-form-radio>i:hover, .layui-form-radioed>i,
  .layui-breadcrumb a:hover,
  .layui-laypage a:hover,
  .layui-tab-brief>.layui-tab-title .layui-this{
      color: #177ce3!important;
- }
+ }*/
 
  .layui-btn-primary:hover,
  .layui-form-onswitch,
