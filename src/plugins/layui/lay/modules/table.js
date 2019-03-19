@@ -736,7 +736,16 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util','fsConfig'], function
             }
             that.renderForm();
             that.layBody.scrollTop(0);
-            that.layMain.html('<div class="'+ NONE +'">'+ ($.result(res,response.msgName) || '返回的数据状态异常') +'</div>');
+            that.setColsWidth();
+            //解决固定列问题
+            that.layFixed.find('tbody').children().remove();
+            that.layFixed.find('.'+ NONE).remove();
+            that.layFixed.find('.layui-table-body').removeAttr("style");
+
+            that.layMain.find('tbody').html('');
+            that.layMain.find('.'+ NONE).remove();
+            that.layPage['addClass'](HIDE);
+            that.layMain.append('<div class="'+ NONE +'">'+ ($.result(res,response.msgName) || '返回的数据状态异常') +'</div>');
             options.time = (new Date().getTime() - that.startTime) + ' ms'; //耗时（接口请求+视图渲染）
           } else {
             var newRes ={};
