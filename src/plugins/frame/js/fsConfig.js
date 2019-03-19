@@ -18,7 +18,7 @@
 /**
  * 基础配置
  * @author: fallsea
- * @version 2.3.0
+ * @version 2.3.1
  */
 layui.define([], function (exports) {
 

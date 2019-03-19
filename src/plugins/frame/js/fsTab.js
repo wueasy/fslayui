@@ -18,7 +18,7 @@
 /**
  * 菜单管理
  * @author: fallsea
- * @version 2.3.0
+ * @version 2.3.1
  */
 layui.define(['element'], function(exports){
   var element = layui.element,
@@ -52,7 +52,7 @@ layui.define(['element'], function(exports){
 	/**
 	 * 新增tab
 	 */
-	FsTab.prototype.add = function(elem) {
+	FsTab.prototype.add = function(elem,title,dataUrl) {
 
     if($(elem).is("a")){
         elem = $(elem).parent();
@@ -66,8 +66,12 @@ layui.define(['element'], function(exports){
   	if($('#fsTabMenu>li[lay-id="'+layId+'"]').length==0){
   		$(elem).attr("lay-id",layId);
   		var dom =$(elem).find("a");
-  		var title = $(elem).find("a").html();
-  		var dataUrl = dom.attr("dataUrl");
+  		if($.isEmpty(title)){
+  			title = $(elem).find("a").html();
+  		}
+  		if($.isEmpty(dataUrl)){
+  			dataUrl = dom.attr("dataUrl");
+  		}
   		if(!$.isEmpty(dataUrl)){
   			element.tabAdd(thisTab.config.tabFilter, {
   			  title: title

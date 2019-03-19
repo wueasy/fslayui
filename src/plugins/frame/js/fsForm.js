@@ -18,7 +18,7 @@
 /**
  * form表单工具
  * @author: fallsea
- * @version 2.3.0
+ * @version 2.3.1
  */
 layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], function(exports){
   var layer = layui.layer,
@@ -212,11 +212,10 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
 			  	    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
 			  	    "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
 			  	  ],
-
+            fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
 			  	  toolbar1: isReadonly?"":"bold italic underline forecolor backcolor strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
 			  	  toolbar2: isReadonly?"":"undo redo | searchreplace | bullist numlist | outdent indent blockquote | link unlink anchor image media code | insertdatetime preview",
 			  	  toolbar3: isReadonly?"":"table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | visualchars visualblocks nonbreaking template pagebreak restoredraft",
-
 			  	  menubar: false,
 			  	  toolbar_items_size: 'small',
 //			  	  images_upload_url: '/upload',
