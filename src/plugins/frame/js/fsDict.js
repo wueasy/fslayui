@@ -58,7 +58,7 @@ layui.fsDict = {
  		//省份
  		area1 : {
  			formatType : "server",
- 			loadUrl : "/fsbus/DEMO1006",
+ 			loadUrl : "/servlet/DEMO1006",
  			method : "get",
  			inputs : "parentid:0",
  			labelField : "name",
@@ -67,7 +67,7 @@ layui.fsDict = {
  		//城市
  		area2 : {
  			formatType : "server",
- 			loadUrl : "/fsbus/DEMO1006",
+ 			loadUrl : "/servlet/DEMO1006",
  			inputs : "parentid:",
  			labelField : "name",
  			valueField : "id"
@@ -75,7 +75,7 @@ layui.fsDict = {
  		//区
  		area3 : {
  			formatType : "server",
- 			loadUrl : "/fsbus/DEMO1006",
+ 			loadUrl : "/servlet/DEMO1006",
  			inputs : "parentid:,area1:#area2222222",
  			labelField : "name",
  			valueField : "id"

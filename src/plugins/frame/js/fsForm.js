@@ -491,7 +491,7 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
 
     	}
     	if($.isEmpty(url)){
-    		url = "/fsbus/" + funcNo;
+    		url = "/servlet/" + funcNo;
     	}
 
     	if(!$.isEmpty(url) && (isLoad !="0" || b)){
@@ -695,7 +695,7 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
 				var funcNo = formDom.attr("loadFuncNo");
 		    var url = formDom.attr("loadUrl");//请求url
 	      if($.isEmpty(url)){
-	        url = "/fsbus/" + funcNo;
+	        url = "/servlet/" + funcNo;
 	      }
 	      fsCommon.invoke(url,urlParam,function(data){
 					if(data[statusName] == successNo)
@@ -819,7 +819,7 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
   		return;
   	}
   	if($.isEmpty(url)){
-      url = "/fsbus/" + funcNo;
+      url = "/servlet/" + funcNo;
     }
 
   	//处理的tinymce编辑器值

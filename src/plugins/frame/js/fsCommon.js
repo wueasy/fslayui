@@ -93,7 +93,7 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 
 		},
 		invokeServer : function(funcNo, param, callBackFunc, async, method) {
-			var url = "/fsbus/" + funcNo;
+			var url = "/servlet/" + funcNo;
 			fsCommon.invoke(url, param, callBackFunc, async, method);
 		},
 		invoke : function(url, param, callBackFunc, async, method) {
@@ -340,7 +340,7 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 						return;
 					}
 					if ($.isEmpty(url)) {
-						url = "/fsbus/" + _funcNo;
+						url = "/servlet/" + _funcNo;
 					}
 					//获取参数
 					var inputs = _this.attr("inputs");
@@ -667,7 +667,7 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 						return;
 					}
 					if ($.isEmpty(url)) {
-						url = "/fsbus/" + _funcNo;
+						url = "/servlet/" + _funcNo;
 					}
 					//获取参数
 					var inputs = _this.attr("inputs");
