@@ -27,7 +27,7 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function()
 	fsConfig = layui.fsConfig,
 	fsCommon = layui.fsCommon,
 	statusName = $.result(fsConfig,"global.result.statusName","errorNo"),
-  msgName = $.result(fsConfig,"global.result.msgName","errorInfo"),
+    msgName = $.result(fsConfig,"global.result.msgName","errorInfo"),
 	fsMenu = layui.fsMenu;
 
 	fsMenu.render();
@@ -64,7 +64,7 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function()
         return !isDevice('pc');
     }
 
-		var slideSideBar = function() {
+    var slideSideBar = function() {
         var $slideSidebar = $('.slide-sidebar'),
             $pageContainer = $('.layui-body'),
             $mobileMask = $('.mobile-mask');
@@ -80,10 +80,10 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function()
                 $admin.addClass(toggleClass);
                 isFold = true;
                 if(isMobile()) {
-									$mobileMask.show();
-								}else{
-									$mobileMask.hide();
-								}
+                    $mobileMask.show();
+                }else{
+                    $mobileMask.hide();
+                }
             }else{
                 $icon.removeClass('ai-menuunfold').addClass('ai-menufold');
                 $admin.removeClass(toggleClass);
@@ -110,67 +110,67 @@ layui.use(['fsMenu','layer','fsTab','fsCommon','fsConfig','element'], function()
             $slideSidebar.trigger('click');
         });
 
-				//窗口大小变动时触发
-				window.onresize = function(){
-					var $admin = $('body').find('.layui-layout-admin');
-					var $icon = $('.slide-sidebar').find('i');
-					var toggleClass = isMobile() ? 'fold-side-bar-xs' : 'fold-side-bar';
-					if(isMobile()){
-						$admin.removeClass('fold-side-bar');
-						$icon.removeClass('ai-menuunfold').addClass('ai-menufold');
-					}
-				}
+        //窗口大小变动时触发
+        window.onresize = function(){
+            var $admin = $('body').find('.layui-layout-admin');
+            var $icon = $('.slide-sidebar').find('i');
+            var toggleClass = isMobile() ? 'fold-side-bar-xs' : 'fold-side-bar';
+            if(isMobile()){
+                $admin.removeClass('fold-side-bar');
+                $icon.removeClass('ai-menuunfold').addClass('ai-menufold');
+            }
+        }
     }
-		slideSideBar();
+    slideSideBar();
 
 
 		/**
 	 * 右边菜单
 	 */
 	$.contextMenu({
-    selector: '.layui-tab-title li',
-    callback: function(key, options) {
-    	var layId = $(this).attr("lay-id");
-    	switch (key) {
-				case "close":
-					fsTab.del(layId);
-					break;
-				case "closeOther":
+        selector: '.layui-tab-title li',
+        callback: function(key, options) {
+            var layId = $(this).attr("lay-id");
+            switch (key) {
+                case "close":
+                    fsTab.del(layId);
+                    break;
+                case "closeOther":
 
-					$(this).parent().children("li").each(function(i,e){
+                    $(this).parent().children("li").each(function(i,e){
 
-						if($(this).find(".layui-tab-close").is(":visible")){
+                        if($(this).find(".layui-tab-close").is(":visible")){
 
-							var newLayId = $(this).attr("lay-id");
-							if(layId != newLayId ){
-								fsTab.del(newLayId);
-							}
-						}
-					});
-					break;
-				case "closeAll":
+                            var newLayId = $(this).attr("lay-id");
+                            if(layId != newLayId ){
+                                fsTab.del(newLayId);
+                            }
+                        }
+                    });
+                    break;
+                case "closeAll":
 
-					$(this).parent().children("li").each(function(i,e){
-						if($(this).find(".layui-tab-close").is(":visible")){
-							var newLayId = $(this).attr("lay-id");
-							fsTab.del(newLayId);
-						}
-					});
-					break;
-				default:
-					break;
-    	}
-    },
-    items: {
-      "close": {name: "关闭标签",icon:"fa-close",disabled: function(){
-      	if($(this).find(".layui-tab-close").is(":visible")){
-      		return false;
-      	}
-      	return true;
-      }},
-      "closeOther": {name: "关闭其他",icon:"fa-ban"},
-      "closeAll": {name: "关闭全部",icon:"fa-window-close"}
-    }
+                    $(this).parent().children("li").each(function(i,e){
+                        if($(this).find(".layui-tab-close").is(":visible")){
+                            var newLayId = $(this).attr("lay-id");
+                            fsTab.del(newLayId);
+                        }
+                    });
+                    break;
+                default:
+                    break;
+            }
+        },
+        items: {
+            "close": {name: "关闭标签",icon:"fa-close",disabled: function(){
+                if($(this).find(".layui-tab-close").is(":visible")){
+                    return false;
+                }
+                return true;
+            }},
+            "closeOther": {name: "关闭其他",icon:"fa-ban"},
+            "closeAll": {name: "关闭全部",icon:"fa-window-close"}
+        }
 	});
 
 });

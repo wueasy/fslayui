@@ -27,9 +27,9 @@ layui.define(['element',"fsConfig","fsCommon"], function(exports){
 	fsConfig = layui.fsConfig,
 	menuConfig = fsConfig.menuConfig;
 	statusName = $.result(fsConfig,"global.result.statusName","errorNo"),
-  msgName = $.result(fsConfig,"global.result.msgName","errorInfo"),
+	msgName = $.result(fsConfig,"global.result.msgName","errorInfo"),
 	successNo = $.result(fsConfig,"global.result.successNo","0"),
-  dataName = $.result(fsConfig,"global.result.dataName","results.data"),
+	dataName = $.result(fsConfig,"global.result.dataName","results.data"),
 	FsMenu = function (){
 
 	};

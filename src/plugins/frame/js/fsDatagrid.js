@@ -47,8 +47,8 @@ layui.define(["fsCommon","table",'laypage','element','fsConfig','form','slider',
 
   FsDatagrid.prototype.render = function(options,params){
   	this.config = {
-      id:"",//form表单id
-      elem:null,//form对象
+      id:"",//id
+      elem:null,//对象
       fsSortType : $.result(fsConfig,"global.page.sortType"),//排序方式，1 异步排序
       clickCallBack:null, //点击回调函数
       getDatagrid:null
@@ -447,6 +447,16 @@ layui.define(["fsCommon","table",'laypage','element','fsConfig','form','slider',
     }
   };
 
+  /**
+   * 获取刷新的表格id
+   */
+  FsDatagrid.prototype.getRefreshTableId = function(){
+    var thisDatagrid = this;
+
+	  var _table = $(thisDatagrid.config.elem);
+    return _table.attr("refreshTableId");
+  };
+
 
   /**
    * 选中的数据
@@ -586,6 +596,17 @@ layui.define(["fsCommon","table",'laypage','element','fsConfig','form','slider',
               	fsCommon.setRefreshTable("1");
               	if(!$.isEmpty(getDatagrid(tableId))){
               		 getDatagrid(tableId).refresh();
+
+                   //刷新相关表格
+                   var _refreshTableId = getDatagrid(tableId).getRefreshTableId();
+                   if(!$.isEmpty(_refreshTableId)){
+         						var refreshTableIdArr = _refreshTableId.split(',');
+         						$.each(refreshTableIdArr, function(i, value) {
+         							if(!$.isEmpty(value)){
+         								getDatagrid(value).refresh();
+         							}
+         						});
+         					}
               	}
                 fsCommon.successMsg('操作成功!');
               }
@@ -684,6 +705,17 @@ layui.define(["fsCommon","table",'laypage','element','fsConfig','form','slider',
           		}else{
           			if(!$.isEmpty(getDatagrid(tableId))){
           				getDatagrid(tableId).refresh();
+
+                  //刷新相关表格
+                  var _refreshTableId = getDatagrid(tableId).getRefreshTableId();
+                  if(!$.isEmpty(_refreshTableId)){
+                   var refreshTableIdArr = _refreshTableId.split(',');
+                   $.each(refreshTableIdArr, function(i, value) {
+                     if(!$.isEmpty(value)){
+                       getDatagrid(value).refresh();
+                     }
+                   });
+                 }
           			}
           		}
             }

@@ -45,14 +45,14 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 	FsTree.prototype.render = function(options){
 		var _this = this;
 
-    $.extend(true, _this.config, options);
+		$.extend(true, _this.config, options);
 
-    if($.isEmpty(_this.config.id)){
-    	fsCommon.warnMsg("id不能为空!");
+		if($.isEmpty(_this.config.id)){
+			fsCommon.warnMsg("id不能为空!");
 			return;
-    }
+		}
 
-    var domTree = $("#"+_this.config.id);
+		var domTree = $("#"+_this.config.id);
 
 		_this.config.treeName = domTree.attr("treeName");
 		_this.config.treeIdKey = domTree.attr("treeIdKey");
@@ -61,11 +61,11 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 		_this.config.isDrag = domTree.attr("isDrag");//是否拖拽
 
 
-    _this.queryTree();
+		_this.queryTree();
 
-    _this.rightMenu();
+		_this.rightMenu();
 
-    return _this;
+		return _this;
 	};
 
 	/**
@@ -123,26 +123,25 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 
 							var tid = $(this).parent().attr("id");
 
-			      	var zTree = $.fn.zTree.getZTreeObj(_treeId);
+							var zTree = $.fn.zTree.getZTreeObj(_treeId);
 							var node = zTree.getNodeByTId(tid);
-			      	if(null!=node && node["isParent"] ){//父栏目禁用
-			      		return true;
-			      	}
+							if(null!=node && node["isParent"] ){//父栏目禁用
+								return true;
+							}
 						}else if(disableds[i]=="rootNode"){
 
 							var tid = $(this).parent().attr("id");
-			      	var zTree = $.fn.zTree.getZTreeObj(_treeId);
+							var zTree = $.fn.zTree.getZTreeObj(_treeId);
 							var node = zTree.getNodeByTId(tid);
-			      	if(null!=node && node.level === 0){//根节点禁用
-			      		return true;
-			      	}
+							if(null!=node && node.level === 0){//根节点禁用
+								return true;
+							}
 						}
 
 					}
-	      	return false;
-	      };
+					return false;
+				};
 			}
-
 			_rightMenu[uuid] = obj;
 
 		});
@@ -154,24 +153,24 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 		var _treeIdKey = _this.config.treeIdKey;
 
 
-  	$.contextMenu({
-      selector: "#"+_treeId+" a",
-      callback: function(key, options) {
-      	var tid = $(this).parent().attr("id");
+		$.contextMenu({
+			selector: "#"+_treeId+" a",
+			callback: function(key, options) {
+				var tid = $(this).parent().attr("id");
 
-      	var _thisButton = $("#"+key);
+				var _thisButton = $("#"+key);
 
-      	//通过tid获取id值
-      	var zTree = $.fn.zTree.getZTreeObj(_treeId);
-      	var node21 = zTree.getNodeByTId(tid);
-    		var idVal = null;
-    		if(!$.isEmpty(node21)){
-    			idVal = node21[_treeIdKey];
-    		}
-      	fsCommon.buttonCallback(_thisButton,_getTree,idVal,_getForm);
-      },
-      items: _rightMenu
-  	});
+				//通过tid获取id值
+				var zTree = $.fn.zTree.getZTreeObj(_treeId);
+				var node21 = zTree.getNodeByTId(tid);
+				var idVal = null;
+				if(!$.isEmpty(node21)){
+					idVal = node21[_treeIdKey];
+				}
+				fsCommon.buttonCallback(_thisButton,_getTree,idVal,_getForm);
+			},
+			items: _rightMenu
+		});
 	}
 
 	//显示树
@@ -179,17 +178,17 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 		var _this = this;
 		var funcNo = _this.config.funcNo;
 
-    var url = _this.config.url;//请求url
+		var url = _this.config.url;//请求url
 
-    var treeId = _this.config.id;
+		var treeId = _this.config.id;
 
-    if($.isEmpty(funcNo) && $.isEmpty(url)){
-    	fsCommon.warnMsg("功能号或请求地址为空!");
+		if($.isEmpty(funcNo) && $.isEmpty(url)){
+		fsCommon.warnMsg("功能号或请求地址为空!");
 			return;
 		}
 		if($.isEmpty(url)){
-      url = "/servlet/" + funcNo;
-    }
+			url = "/servlet/" + funcNo;
+		}
 		var servletUrl = $.result(fsConfig,"global.servletUrl");
 		if(!$.isEmpty(servletUrl)){
 			url = servletUrl + url;
@@ -209,7 +208,7 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 					enable: true,
 					idKey: _this.config.treeIdKey,
 					pIdKey: _this.config.treePIdKey,
-					rootPId: 0
+					rootPId: -1
 				}
 			},
 			edit:edit,
@@ -249,15 +248,14 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 			edit["showRemoveBtn"] = false;
 			edit["showRenameBtn"] = false;
 			setting["edit"] = edit;
-
 		}
 
 		$.fn.zTree.init($("#"+treeId), setting,data);
 
 		//回调处理
-    if(!$.isEmpty(layui.fsCallback.tree[treeId])){
-    	layui.fsCallback.tree[treeId](_this);
-    }
+		if(!$.isEmpty(layui.fsCallback.tree[treeId])){
+			layui.fsCallback.tree[treeId](_this);
+		}
 	};
 
 
@@ -281,23 +279,23 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 
 		var otherParam = {};//业务参数
 		var inputs = domTree.attr("inputs");
-	  if(!$.isEmpty(inputs)){
+		if(!$.isEmpty(inputs)){
 
-	  	//参数处理，如果有参数，自动带入条件
-	  	 var urlParam = fsCommon.getUrlParam();
-	  	 var paramObj = fsCommon.getParamByInputs(inputs,urlParam);
-	  	 if(!$.isEmpty(paramObj)){
-	  		 $.extend(otherParam,paramObj);
-	  	 }
-	  }
-	  if(!$.isEmpty(param)){
-	  	$.extend(otherParam,param);
-	  }
-	  //处理查询表单
+			//参数处理，如果有参数，自动带入条件
+			var urlParam = fsCommon.getUrlParam();
+			var paramObj = fsCommon.getParamByInputs(inputs,urlParam);
+			if(!$.isEmpty(paramObj)){
+				$.extend(otherParam,paramObj);
+			}
+		}
+		if(!$.isEmpty(param)){
+			$.extend(otherParam,param);
+		}
+		//处理查询表单
 		var defaultForm = domTree.attr("defaultForm");
 		if(!$.isEmpty(defaultForm)){
-			 var fromData = $("#"+defaultForm).getFormData(true);
-			 $.extend(otherParam,fromData);
+			var fromData = $("#"+defaultForm).getFormData(true);
+			$.extend(otherParam,fromData);
 		}
 		_this.config.otherParam = otherParam;
 
@@ -310,6 +308,7 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 				arr["drag"] = false;
 				arr[_this.config.treeName] = "根目录";
 				arr[_this.config.treeIdKey] = 0;
+				arr[_this.config.treePIdKey] = -1;
 				array.push(arr);
 			}
 			_this.showTree(array);
@@ -330,6 +329,7 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 						arr["drag"] = false;
 						arr[_this.config.treeName] = "根目录";
 						arr[_this.config.treeIdKey] = 0;
+						arr[_this.config.treePIdKey] = -1;
 						array.push(arr);
 					}
 					_this.showTree(array);
@@ -341,7 +341,6 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 				}
 			},false,method);
 		}
-
 	}
 
 	/**
@@ -393,6 +392,10 @@ layui.define(['layer',"fsCommon",'fsConfig'], function(exports){
 
 	};
 
+	FsTree.prototype.getRefreshTableId = function(){
+		var _this = this;
+		return $("#"+_this.config.id).attr("refreshTableId");
+	};
 
 	/**
 	 * 获取选中的节点

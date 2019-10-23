@@ -598,7 +598,8 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
 	 * 自动填充form表单数据
 	 */
 	FsForm.prototype.loadFormData = function(param){
-    var thisForm = this;
+		
+		var thisForm = this;
 		//参数处理，如果有参数，自动填充form表单
 		var urlParam = fsCommon.getUrlParam();
 
@@ -690,18 +691,18 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
 					}
 				}
 			}else if(!$.isEmpty(formDom.attr("loadFuncNo")) || !$.isEmpty(formDom.attr("loadUrl"))){
-        var _method = formDom.attr("method");
-				//如果配置异步地址，默认加载异步地址
-				var funcNo = formDom.attr("loadFuncNo");
+        	var _method = formDom.attr("method");
+			//如果配置异步地址，默认加载异步地址
+			var funcNo = formDom.attr("loadFuncNo");
 		    var url = formDom.attr("loadUrl");//请求url
 	      if($.isEmpty(url)){
 	        url = "/servlet/" + funcNo;
 	      }
 	      fsCommon.invoke(url,urlParam,function(data){
-					if(data[statusName] == successNo)
+				if(data[statusName] == successNo)
 			  	{
-						var formData = $.result(data,dataName);
-						showData(formData);
+					var formData = $.result(data,dataName);
+					showData(formData);
 			  	}
 			  	else
 			  	{
@@ -760,34 +761,37 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
     var formElem = thisForm.config.elem;
     $(formElem).find("button").each(function(){
       var lay_filter = $(this).attr("lay-filter");
-      /**监听新增提交*/
-      form.on("submit("+lay_filter+")", function (data) {
+      if(!$.isEmpty(lay_filter)){
+        /**监听新增提交*/
+        form.on("submit("+lay_filter+")", function (data) {
 
-      	var _thisButton = $(this);
-      	if(lay_filter=="addRow"){//增加到行中，缓存中
-      		$.setSessionStorage("fsDataRow",JSON.stringify(data.field));
-      		fsCommon.setRefreshTable("1");
+        	var _thisButton = $(this);
+        	if(lay_filter=="addRow"){//增加到行中，缓存中
+        		$.setSessionStorage("fsDataRow",JSON.stringify(data.field));
+        		fsCommon.setRefreshTable("1");
 
-      	  //是否自动关闭，默认是
-      		if(_thisButton.attr("isClose") != "0"){
-      			parent.layer.close(parent.layer.getFrameIndex(window.name));
-      		}
-      		fsCommon.successMsg('操作成功!');
+        	  //是否自动关闭，默认是
+        		if(_thisButton.attr("isClose") != "0"){
+        			parent.layer.close(parent.layer.getFrameIndex(window.name));
+        		}
+        		fsCommon.successMsg('操作成功!');
 
-      	}else{
-      		if("1" == _thisButton.attr("isVerifyPwd"))//是否验证密码
-      		{
-      			fsCommon.promptVerifyPwd(data.field,function(data2){
-      				thisForm.submitForm(data2,_thisButton,formElem);
-      			});
-      		}
-      		else
-      		{
-      			thisForm.submitForm(data.field,_thisButton,formElem);
-      		}
-      	}
-        return false;
-      });
+        	}else{
+        		if("1" == _thisButton.attr("isVerifyPwd"))//是否验证密码
+        		{
+        			fsCommon.promptVerifyPwd(data.field,function(data2){
+        				thisForm.submitForm(data2,_thisButton,formElem);
+        			});
+        		}
+        		else
+        		{
+        			thisForm.submitForm(data.field,_thisButton,formElem);
+        		}
+        	}
+          return false;
+        });
+      }
+
     });
 	}
 
@@ -843,12 +847,13 @@ layui.define(['layer',"fsCommon","form",'laydate','slider','rate',"fsConfig"], f
 
   	fsCommon.invoke(url,param,function(data)
 		{
-      if(!$.isEmpty(requestSuccessCallback)){
-        layui.fsRequestSuccessCallback[requestSuccessCallback](data,formElem,fsCommon);
-        return;
-      }
     	if(data[statusName] == successNo)
     	{
+        if(!$.isEmpty(requestSuccessCallback)){
+          layui.fsRequestSuccessCallback[requestSuccessCallback](data,formElem,fsCommon);
+          return;
+        }
+
     		fsCommon.setRefreshTable("1");
 
     		//是否自动关闭，默认是

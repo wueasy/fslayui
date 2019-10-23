@@ -46,10 +46,18 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 			}
 			if (notifyType == "toastr") {
 				top.toastr.error(text);
+			}else if (notifyType == "sweetalert") {
+				top.swal({
+					title: text,
+					type: "error",
+					showCancelButton: false,
+					allowOutsideClick: false,
+					confirmButtonText: "确定",
+					closeOnConfirm: false
+				});
 			} else {
 				top.layer.msg(text, {
-					icon : 2,
-					time : time
+					icon : 2
 				});
 			}
 		},
@@ -60,6 +68,16 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 			}
 			if (notifyType == "toastr") {
 				top.toastr.success(text);
+			}else if (notifyType == "sweetalert") {
+				top.swal({
+					title: text,
+					type: "success",
+					showCancelButton: false,
+					allowOutsideClick: false,
+					confirmButtonText: "确定",
+					closeOnConfirm: false,
+					timer: time
+				});
 			} else {
 				top.layer.msg(text, {
 					icon : 1,
@@ -74,6 +92,15 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 			}
 			if (notifyType == "toastr") {
 				top.toastr.warning(text);
+			}else if (notifyType == "sweetalert") {
+				top.swal({
+					title: text,
+					type: "warning",
+					showCancelButton: false,
+					allowOutsideClick: false,
+					confirmButtonText: "确定",
+					closeOnConfirm: false
+				});
 			} else {
 				top.layer.msg(text, {
 					icon : 0,
@@ -82,14 +109,32 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 			}
 		},
 		confirm : function(title, text, callBackFunc) {
-			top.layer.confirm(text, {
-				title : title,
-				resize : false,
-				btn : [ '确定', '取消' ],
-				btnAlign : 'c',
-				anim : 1,
-				icon : 3
-			}, callBackFunc, function() {})
+
+			if (notifyType == "sweetalert") {
+				top.swal({
+					title: text,
+					type: "warning",
+					allowOutsideClick: false,
+					confirmButtonColor: '#3085d6',// 确定按钮的 颜色
+   	        		confirmButtonText: "确定",
+					cancelButtonColor: '#aaa', // 取消按钮的 颜色
+					cancelButtonText: "取消", // 取消按钮的 文字
+					showCancelButton: true,
+   	       			closeOnConfirm: false
+   	    		}, function(){
+ 	   	    		callBackFunc();
+ 	   	    	});
+			} else{
+				top.layer.confirm(text, {
+					title : title,
+					resize : false,
+					btn : [ '确定', '取消' ],
+					btnAlign : 'c',
+					anim : 1,
+					icon : 3
+				}, callBackFunc, function() {});
+			}
+
 
 		},
 		invokeServer : function(funcNo, param, callBackFunc, async, method) {
@@ -309,503 +354,580 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 			}
 
 			switch (_function) {
-			case "refresh":
-				var obj = getDatagrid(_tableId);
-				if (!$.isEmpty(obj)) {
-					//刷新
-					obj.refresh(idVal);
-				}
-				break;
-			case "submit":
-				//提交
-				//单选判断 //多选判断
-				if ("1" == _this.attr("isSelect") || "1" == _this.attr("isMutiDml")) {
-					//获取选中的数据
-					var data = getDatagrid(_tableId).getCheckData(idVal);
-					if (data.length == 0) {
-						fsCommon.warnMsg("请选择需要操作的数据！");
-						return;
-					}
-					if ("1" == _this.attr("isSelect") && data.length > 1) {
-						fsCommon.warnMsg("请选择一行数据！");
-						return;
-					}
-				}
-				var param = {}; //参数
+				case "refresh":
+					var obj = getDatagrid(_tableId);
+					if (!$.isEmpty(obj)) {
+						//刷新
+						obj.refresh(idVal);
 
-				var submitForm = function() {
-					var url = _this.attr("url"); //请求url
-					if ($.isEmpty(_funcNo) && $.isEmpty(url)) {
-						fsCommon.warnMsg("功能号或请求地址为空！");
+						//刷新相关表格
+						var _refreshTableId = obj.getRefreshTableId();
+						if(!$.isEmpty(_refreshTableId)){
+							var refreshTableIdArr = _refreshTableId.split(',');
+							$.each(refreshTableIdArr, function(i, value) {
+								if(!$.isEmpty(value)){
+									getDatagrid(value).refresh(idVal);
+								}
+							});
+						}
+					}
+					break;
+				case "submit":
+					//提交
+					//单选判断 //多选判断
+					if ("1" == _this.attr("isSelect") || "1" == _this.attr("isMutiDml")) {
+						//获取选中的数据
+						var data = getDatagrid(_tableId).getCheckData(idVal);
+						if (data.length == 0) {
+							fsCommon.warnMsg("请选择需要操作的数据！");
+							return;
+						}
+						if ("1" == _this.attr("isSelect") && data.length > 1) {
+							fsCommon.warnMsg("请选择一行数据！");
+							return;
+						}
+					}
+					var param = {}; //参数
+
+					var submitForm = function() {
+						var url = _this.attr("url"); //请求url
+						if ($.isEmpty(_funcNo) && $.isEmpty(url)) {
+							fsCommon.warnMsg("功能号或请求地址为空！");
+							return;
+						}
+						if ($.isEmpty(url)) {
+							url = "/servlet/" + _funcNo;
+						}
+						//获取参数
+						var inputs = _this.attr("inputs");
+
+						if (!$.isEmpty(inputs)) {
+							//获取选中的数据
+							var data = getDatagrid(_tableId).getCheckData(idVal);
+							var param2 = fsCommon.getParamByInputs(inputs, data);
+							$.extend(param, param2);
+						}
+						//请求数据
+						fsCommon.invoke(url, param, function(data) {
+							if(!$.isEmpty(_requestSuccessCallback)){
+								layui.fsRequestSuccessCallback[_requestSuccessCallback](data,getDatagrid(_tableId),fsCommon);
+								return;
+							}
+							if (data[statusName] == "0") {
+								fsCommon.setRefreshTable("1");
+								if (_this.attr("isRefresh") !== "0" && !$.isEmpty(getDatagrid(_tableId))) {
+									//刷新
+									getDatagrid(_tableId).refresh(idVal);
+
+									//刷新相关表格
+									var _refreshTableId = getDatagrid(_tableId).getRefreshTableId();
+									if(!$.isEmpty(_refreshTableId)){
+										var refreshTableIdArr = _refreshTableId.split(',');
+										$.each(refreshTableIdArr, function(i, value) {
+											if(!$.isEmpty(value)){
+												getDatagrid(value).refresh(idVal);
+											}
+										});
+									}
+								}
+
+								if (_this.attr("isClose") == "1") {
+									parent.layer.close(parent.layer.getFrameIndex(window.name));
+								}
+								fsCommon.successMsg(_successMsg);
+							} else {
+								//提示错误消息
+								fsCommon.errorMsg(data[msgName]);
+							}
+						}, null, _method);
+					}
+
+					var submitForm2 = function() {
+
+						if ("1" == _this.attr("isVerifyPwd")) //是否验证密码
+						{
+							fsCommon.promptVerifyPwd(param, function(data2) {
+								param = data2;
+								submitForm();
+							});
+						} else {
+							submitForm();
+						}
+					}
+
+					if ("1" == _this.attr("isConfirm")) {
+						var confirmMsg = _this.attr("confirmMsg");
+						if ($.isEmpty(confirmMsg)) {
+							confirmMsg = "是否确定操作选中的数据?";
+						}
+
+						fsCommon.confirm("提示", confirmMsg, function(index) {
+							top.layer.close(index);
+							submitForm2();
+						});
+					} else {
+						submitForm2();
+					}
+					break;
+				case "close":
+					//关闭
+					var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+					parent.layer.close(index);
+					break;
+				case "query":
+					//查询
+					var obj = getDatagrid(_tableId);
+					if (!$.isEmpty(obj)) {
+						var formData = _this.parentsUntil('form').parent().getFormData();
+						obj.query(formData);
+
+						//刷新相关表格
+						var _refreshTableId = obj.getRefreshTableId();
+						if(!$.isEmpty(_refreshTableId)){
+							var refreshTableIdArr = _refreshTableId.split(',');
+							$.each(refreshTableIdArr, function(i, value) {
+								if(!$.isEmpty(value)){
+									var obj2 = getDatagrid(value);
+									if (!$.isEmpty(obj2)) {
+										obj2.query(formData);
+									}
+								}
+							});
+						}
+
+					}
+					if(!$.isEmpty(_requestSuccessCallback)){
+						layui.fsRequestSuccessCallback[_requestSuccessCallback](data,getDatagrid(_tableId),fsCommon);
 						return;
 					}
-					if ($.isEmpty(url)) {
-						url = "/servlet/" + _funcNo;
+					break;
+				case "top":
+				case "topAddRow":
+
+					var _url = _this.attr("topUrl");
+					if ($.isEmpty(_url)) {
+						fsCommon.warnMsg("url地址为空！");
+						return false;
 					}
+
+					if ("1" == _this.attr("isSelect")) {
+						//获取选中的数据
+						var data = getDatagrid(_tableId).getCheckData();
+						if (data.length == 0) {
+							fsCommon.warnMsg("请选择需要操作的数据！");
+							return;
+						}
+						if (data.length > 1) {
+							fsCommon.warnMsg("请选择一行数据！");
+							return;
+						}
+					}
+
+					var inputs = _this.attr("inputs");
+
+					if (!$.isEmpty(inputs)) {
+						//获取选中的数据
+						var data = getDatagrid(_tableId).getCheckData(idVal);
+						_url = fsCommon.getUrlByInputs(_url, inputs, data[0]);
+
+						//处理数据缓存
+						if (loadDataType == "1") {
+							var uuid = $.uuid();
+							_url += "&_fsUuid=" + uuid;
+							//缓存选中的数据
+							$.setSessionStorage(uuid, JSON.stringify(data[0]));
+						}
+					}
+
+					//弹出的方式
+					var _mode = _this.attr("topMode");
+					if (!$.isEmpty(_mode)) {
+						if (_url.indexOf('?') == -1) {
+							_url += "?";
+						} else {
+							_url += "&";
+						}
+						_url += "_mode=" + _mode;
+					}
+
+					var _title = _this.attr("topTitle");
+					var _titleElem = _this.attr("titleElem");//自定义的标题内容
+					if(!$.isEmpty(_titleElem)){
+						var xx = $(_titleElem).html();
+						if(!$.isEmpty(xx)){
+							_title += xx;
+						}
+					}
+
+
+					var _width = _this.attr("topWidth");
+					var _height = _this.attr("topHeight");
+
+					var isMaximize = _this.attr("isMaximize");
+
+					fsCommon.open(_title, _width, _height, _url, function() {
+						if (_this.attr("isRefresh") !== "0" && fsCommon.isRefreshTable()) {
+							if(_function == "topAddRow"){//新增表格缓存数据
+								var str = $.getSessionStorage("fsDataRow");
+								$.removeSessionStorage("fsDataRow");
+								if(!$.isEmpty(str)){
+									getDatagrid(_tableId).addRow(JSON.parse(str));
+								}
+							}else{
+								getDatagrid(_tableId).refresh(idVal);
+
+								//刷新相关表格
+								var _refreshTableId = getDatagrid(_tableId).getRefreshTableId();
+								if(!$.isEmpty(_refreshTableId)){
+									var refreshTableIdArr = _refreshTableId.split(',');
+									$.each(refreshTableIdArr, function(i, value) {
+										if(!$.isEmpty(value)){
+											getDatagrid(value).refresh(idVal);
+										}
+									});
+								}
+
+							}
+						}
+					}, isMaximize);
+					break;
+				case "upload":
+
+					var _title = "上传附件";
+					var _width = "400px";
+					var _height = "280px";
+					var _url = $.result(fsConfig, "global.uploadHtmlUrl", "/plugins/frame/views/upload.html");
+
+					var inputs = _this.attr("inputs");
+
+					if (!$.isEmpty(inputs)) {
+						_url = fsCommon.getUrlByInputs(_url, inputs, null);
+					}
+
+					var fileParam = {};
+					if (!$.isEmpty(_this.attr("fileAccept"))) {
+						fileParam["fileAccept"] = _this.attr("fileAccept");
+					}
+					if (!$.isEmpty(_this.attr("fileExts"))) {
+						fileParam["fileExts"] = _this.attr("fileExts");
+					}
+					if (!$.isEmpty(_this.attr("fileSize"))) {
+						fileParam["fileSize"] = _this.attr("fileSize");
+					}
+
+					//是否允许多文件上传，1是
+					var isMultiple = _this.attr("isMultiple");
+					if (!$.isEmpty(isMultiple)) {
+						fileParam["isMultiple"] = isMultiple;
+					}
+					//最大同时长传数量
+					if (!$.isEmpty(_this.attr("maxNumber"))) {
+						fileParam["maxNumber"] = _this.attr("maxNumber");
+					}
+
+					if (!$.isEmpty(fileParam)) {
+						if (_url.indexOf('?') == -1) {
+							_url += "?";
+						} else {
+							_url += "&";
+						}
+						_url += "fileParam=" + escape(JSON.stringify(fileParam));
+					}
+
+					fsCommon.open(_title, _width, _height, _url, function() {
+						var uploadFileList = top.$('meta[name="uploadFileList"]').attr("content");
+						if (!$.isEmpty(uploadFileList)) {
+
+							var fileList = JSON.parse(uploadFileList);
+							var fileObj = null;
+							if($.isArray(fileList) && fileList.length>0){//多文件
+								fileObj = fileList[0];
+							}else{//单文件
+								fileObj = fileList;
+							}
+
+							var uploadFilePath = fileObj[filePath];
+							var uploadFileName = fileObj[fileName];
+							if (!$.isEmpty(uploadFilePath)) {
+								if (!$.isEmpty(_this.attr("fileElem"))) {
+									$(_this.attr("fileElem")).val(uploadFilePath);
+								}
+								if (!$.isEmpty(uploadFileName)) {
+									if (!$.isEmpty(_this.attr("fileNameElem"))) {
+										$(_this.attr("fileNameElem")).val(uploadFileName);
+									}
+								}
+							}
+
+							//回调处理
+							var _callback = _this.attr("onCallback");
+							if(!$.isEmpty(_callback) && !$.isEmpty(layui.fsCallback.button[_callback])){
+								layui.fsCallback.button[_callback](_this,fsCommon,JSON.parse(uploadFileList));
+							}
+
+						}
+
+					});
+
+					break;
+				case "uploadHeadImage":
+					var _title = "修改头像";
+					var _width = "600px";
+					var _height = "500px";
+					var _url = $.result(fsConfig, "global.uploadHeadImageHtmlUrl", "/plugins/frame/views/upload-head-image.html");
+
+					fsCommon.open(_title, _width, _height, _url, function() {
+						var uploadFileList = top.$('meta[name="uploadFileList"]').attr("content");
+						if (!$.isEmpty(uploadFileList)) {
+
+							var fileList = JSON.parse(uploadFileList);
+							var fileObj = null;
+							if($.isArray(fileList) && fileList.length>0){//多文件
+								fileObj = fileList[0];
+							}else{//单文件
+								fileObj = fileList;
+							}
+
+							//回调处理
+							var _callback = _this.attr("onCallback");
+							if(!$.isEmpty(_callback) && !$.isEmpty(layui.fsCallback.button[_callback])){
+								layui.fsCallback.button[_callback](_this,fsCommon,fileObj);
+							}
+
+							var _fileElem = _this.attr("fileElem");
+							if (!$.isEmpty(_fileElem)) {
+								var _fileThis = $(_fileElem);
+								var uploadFilePath = fileObj[filePath];
+								if(_fileThis.is('img')){
+									_fileThis.attr("src",uploadFilePath);
+								}else if(_fileThis.is('input')){
+									_fileThis.val(uploadFilePath);
+								}
+							}
+						}
+					});
+
+					break;
+				case "addRow":
+					getDatagrid(_tableId).addRow();
+					break;
+				case "save":
+
+					var groupId = _this.attr("groupId"); //分组id
+
+					if ($.isEmpty(groupId)) {
+						fsCommon.warnMsg("未配置分组id!");
+						return;
+					}
+					var fsFormData = {}; //form表单数据
+					var isFsForm = false; //是否有form表单
+					var fsTableData = []; //数据表格数据
+					var isFsTable = false; //是否有table表格
+
+					var isFsVerifyForm = true;
+
+					$("table.fsDatagrid,form").each(function(index, elem) {
+						var _groupId = $(this).attr("groupId");
+						if (!$.isEmpty(_groupId) && groupId == _groupId) {
+							if ("FORM" == elem.tagName.toUpperCase()) {
+								var isVerify = form.verifyForm($(this));
+								if (isVerify != false) { //验证通过
+									//获取form表单数据
+									var formData = $(this).getFormData();
+									$.extend(fsFormData, formData);
+									isFsForm = true;
+								} else {
+									isFsVerifyForm = false;
+									return false;
+								}
+							} else if ("TABLE" == elem.tagName.toUpperCase()) {
+								var data = getDatagrid(elem.id).getData();
+								$.extend(fsTableData, data);
+								isFsTable = true;
+							}
+						}
+					});
+
+					if (!isFsVerifyForm) {
+						return;
+					}
+					var param = {}; //参数
+
+					var submitFormSave = function() {
+						var url = _this.attr("url"); //请求url
+
+						if ($.isEmpty(_funcNo) && $.isEmpty(url)) {
+							fsCommon.warnMsg("功能号或请求地址为空！");
+							return;
+						}
+						if ($.isEmpty(url)) {
+							url = "/servlet/" + _funcNo;
+						}
+						//获取参数
+						var inputs = _this.attr("inputs");
+
+						if (!$.isEmpty(inputs)) {
+							var param2 = fsCommon.getParamByInputs(inputs);
+							$.extend(param, param2);
+						}
+						if (isFsForm) {
+							param["fsFormData"] = encodeURIComponent(JSON.stringify(fsFormData));
+						}
+						if (isFsTable) {
+							param["fsTableData"] = encodeURIComponent(JSON.stringify(fsTableData));
+						}
+
+						//请求数据
+						fsCommon.invoke(url, param, function(data) {
+							if (data[statusName] == "0") {
+								fsCommon.setRefreshTable("1");
+
+								//是否自动关闭，默认是
+								if (_this.attr("isClose") != "0") {
+									parent.layer.close(parent.layer.getFrameIndex(window.name));
+								}
+								fsCommon.successMsg(_successMsg);
+							} else {
+								//提示错误消息
+								fsCommon.errorMsg(data[msgName]);
+							}
+						}, null, _method);
+					}
+
+					var submitFormSave2 = function() {
+
+						if ("1" == _this.attr("isVerifyPwd")) //是否验证密码
+						{
+							fsCommon.promptVerifyPwd(param, function(data2) {
+								param = data2;
+								submitFormSave();
+							});
+						} else {
+							submitFormSave();
+						}
+
+					};
+
+					if ("1" == _this.attr("isConfirm")) {
+						var confirmMsg = _this.attr("confirmMsg");
+						if ($.isEmpty(confirmMsg)) {
+							confirmMsg = "是否确定操作选中的数据?";
+						}
+
+						fsCommon.confirm("提示", confirmMsg, function(index) {
+							top.layer.close(index);
+							submitFormSave();
+						});
+					} else {
+						submitFormSave();
+					}
+					break;
+				case "download": //下载
+					var url = _this.attr("url");
+					if (!$.isEmpty(servletUrl)) {
+						url = servletUrl + url;
+					}
+					// 创建一个 form
+					var form1 = document.createElement("form");
+						//获取参数
+					var inputs = _this.attr("inputs");
+
+					if (!$.isEmpty(inputs)) {
+						//获取选中的数据
+						var data = null;
+						if(getDatagrid && getDatagrid(_tableId)){
+							data = getDatagrid(_tableId).getCheckData(idVal);
+						}
+						var param2 = fsCommon.getParamByInputs(inputs, data);
+						for(var key in param2) {
+							var input = document.createElement('input');
+							input.type = 'hidden';
+							input.name = key;
+							input.value = param2[key];
+							form1.appendChild(input)
+						}
+					}
+					// 添加到 body 中
+					document.body.appendChild(form1);
+					// form 的提交方式
+					form1.method = "get";
+					form1.target="_blank";
+					// form 提交路径
+					form1.action =url;
+					// 对该 form 执行提交
+					form1.submit();
+					// 删除该 form
+					document.body.removeChild(form1);
+
+					//增加刷新
+					if (_this.attr("isRefresh") == "1") {
+						fsCommon.setRefreshTable("1");
+					}
+
+					//弹出时关闭窗口
+					if (_this.attr("isClose") == "1") {
+						parent.layer.close(parent.layer.getFrameIndex(window.name));
+					}
+					break;
+				case "right": //打开右边窗口
+
+					var rightId = _this.attr("rightId");
+					var rightTitle = _this.attr("rightTitle");
+					if ($.isEmpty(rightId)) {
+						return;
+					}
+
+					var formDom = $("#" + rightId);
+					if (formDom.length == 0) {
+						return;
+					}
+
+					//赋值标题
+					formDom.parentsUntil('div.layui-card').parent().children(".layui-card-header").html(rightTitle);
+
+					//表单赋值、查询。清空
+					var _mode = _this.attr("mode");
+
 					//获取参数
 					var inputs = _this.attr("inputs");
 
 					if (!$.isEmpty(inputs)) {
 						//获取选中的数据
 						var data = getDatagrid(_tableId).getCheckData(idVal);
-						var param2 = fsCommon.getParamByInputs(inputs, data);
-						$.extend(param, param2);
+
+						var param = fsCommon.getParamByInputs(inputs, data);
+						//赋值
+						formDom.setFormData(param);
 					}
-					//请求数据
-					fsCommon.invoke(url, param, function(data) {
-						if(!$.isEmpty(_requestSuccessCallback)){
-					        layui.fsRequestSuccessCallback[_requestSuccessCallback](data,getDatagrid(_tableId),fsCommon);
-					        return;
-					      }
-						if (data[statusName] == "0") {
-							fsCommon.setRefreshTable("1");
-							if (_this.attr("isRefresh") !== "0" && !$.isEmpty(getDatagrid(_tableId))) {
-								//刷新
-								getDatagrid(_tableId).refresh(idVal);
+
+					param["_mode"] = _mode;
+					getForm(rightId).loadFormData(param);
+					break;
+				default:
+					if (!$.isEmpty(_function)) {
+						try {
+							var obj = null;
+
+							if (!$.isEmpty(getDatagrid)) {
+								obj = getDatagrid(_tableId)
 							}
 
-							if (_this.attr("isClose") == "1") {
-								parent.layer.close(parent.layer.getFrameIndex(window.name));
+							var data = null;
+							if (null != obj) {
+								data = obj.getCheckData();
 							}
-							fsCommon.successMsg(_successMsg);
-						} else {
-							//提示错误消息
-							fsCommon.errorMsg(data[msgName]);
-						}
-					}, null, _method);
-				}
-
-				var submitForm2 = function() {
-
-					if ("1" == _this.attr("isVerifyPwd")) //是否验证密码
-					{
-						fsCommon.promptVerifyPwd(param, function(data2) {
-							param = data2;
-							submitForm();
-						});
-					} else {
-						submitForm();
-					}
-				}
-
-				if ("1" == _this.attr("isConfirm")) {
-					var confirmMsg = _this.attr("confirmMsg");
-					if ($.isEmpty(confirmMsg)) {
-						confirmMsg = "是否确定操作选中的数据?";
-					}
-
-					fsCommon.confirm("提示", confirmMsg, function(index) {
-						top.layer.close(index);
-						submitForm2();
-					});
-				} else {
-					submitForm2();
-				}
-				break;
-			case "close":
-				//关闭
-				var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-				parent.layer.close(index);
-				break;
-			case "query":
-				//查询
-				var obj = getDatagrid(_tableId);
-				if (!$.isEmpty(obj)) {
-					var formData = _this.parentsUntil('form').parent().getFormData();
-					obj.query(formData);
-				}
-				if(!$.isEmpty(_requestSuccessCallback)){
-			        layui.fsRequestSuccessCallback[_requestSuccessCallback](data,getDatagrid(_tableId),fsCommon);
-			        return;
-			      }
-				break;
-			case "top":
-			case "topAddRow":
-
-				var _url = _this.attr("topUrl");
-				if ($.isEmpty(_url)) {
-					fsCommon.warnMsg("url地址为空！");
-					return false;
-				}
-
-				if ("1" == _this.attr("isSelect")) {
-					//获取选中的数据
-					var data = getDatagrid(_tableId).getCheckData();
-					if (data.length == 0) {
-						fsCommon.warnMsg("请选择需要操作的数据！");
-						return;
-					}
-					if (data.length > 1) {
-						fsCommon.warnMsg("请选择一行数据！");
-						return;
-					}
-				}
-
-				var inputs = _this.attr("inputs");
-
-				if (!$.isEmpty(inputs)) {
-					//获取选中的数据
-					var data = getDatagrid(_tableId).getCheckData(idVal);
-					_url = fsCommon.getUrlByInputs(_url, inputs, data[0]);
-
-					//处理数据缓存
-					if (loadDataType == "1") {
-						var uuid = $.uuid();
-						_url += "&_fsUuid=" + uuid;
-						//缓存选中的数据
-						$.setSessionStorage(uuid, JSON.stringify(data[0]));
-					}
-				}
-
-				//弹出的方式
-				var _mode = _this.attr("topMode");
-				if (!$.isEmpty(_mode)) {
-					if (_url.indexOf('?') == -1) {
-						_url += "?";
-					} else {
-						_url += "&";
-					}
-					_url += "_mode=" + _mode;
-				}
-
-				var _title = _this.attr("topTitle");
-				var _titleElem = _this.attr("titleElem");//自定义的标题内容
-				if(!$.isEmpty(_titleElem)){
-					var xx = $(_titleElem).html();
-					if(!$.isEmpty(xx)){
-						_title += xx;
-					}
-				}
-
-
-				var _width = _this.attr("topWidth");
-				var _height = _this.attr("topHeight");
-
-				var isMaximize = _this.attr("isMaximize");
-
-				fsCommon.open(_title, _width, _height, _url, function() {
-					if (_this.attr("isRefresh") !== "0" && fsCommon.isRefreshTable()) {
-						if(_function == "topAddRow"){//新增表格缓存数据
-							var str = $.getSessionStorage("fsDataRow");
-							$.removeSessionStorage("fsDataRow");
-							if(!$.isEmpty(str)){
-								getDatagrid(_tableId).addRow(JSON.parse(str));
+							if (!$.isEmpty(fsButtonCommon[_function])) {
+								//执行
+								fsButtonCommon[_function](_this, data, obj, fsCommon);
+							} else if (!$.isEmpty(layui.fsButton[_function])) {
+								layui.fsButton[_function](_this, data, obj, fsCommon);
 							}
-						}else{
-							getDatagrid(_tableId).refresh(idVal);
+
+						} catch (e) {
+							console.error(e);
 						}
 					}
-				}, isMaximize);
-				break;
-			case "upload":
-
-				var _title = "上传附件";
-				var _width = "400px";
-				var _height = "280px";
-				var _url = $.result(fsConfig, "global.uploadHtmlUrl", "/plugins/frame/views/upload.html");
-
-				var inputs = _this.attr("inputs");
-
-				if (!$.isEmpty(inputs)) {
-					_url = fsCommon.getUrlByInputs(_url, inputs, null);
-				}
-
-				var fileParam = {};
-				if (!$.isEmpty(_this.attr("fileAccept"))) {
-					fileParam["fileAccept"] = _this.attr("fileAccept");
-				}
-				if (!$.isEmpty(_this.attr("fileExts"))) {
-					fileParam["fileExts"] = _this.attr("fileExts");
-				}
-				if (!$.isEmpty(_this.attr("fileSize"))) {
-					fileParam["fileSize"] = _this.attr("fileSize");
-				}
-
-				//是否允许多文件上传，1是
-				var isMultiple = _this.attr("isMultiple");
-				if (!$.isEmpty(isMultiple)) {
-					fileParam["isMultiple"] = isMultiple;
-				}
-				//最大同时长传数量
-				if (!$.isEmpty(_this.attr("maxNumber"))) {
-					fileParam["maxNumber"] = _this.attr("maxNumber");
-				}
-
-				if (!$.isEmpty(fileParam)) {
-					if (_url.indexOf('?') == -1) {
-						_url += "?";
-					} else {
-						_url += "&";
-					}
-					_url += "fileParam=" + escape(JSON.stringify(fileParam));
-				}
-
-				fsCommon.open(_title, _width, _height, _url, function() {
-					var uploadFileList = top.$('meta[name="uploadFileList"]').attr("content");
-					if (!$.isEmpty(uploadFileList)) {
-
-						var fileList = JSON.parse(uploadFileList);
-						var fileObj = null;
-						if($.isArray(fileList) && fileList.length>0){//多文件
-							fileObj = fileList[0];
-						}else{//单文件
-							fileObj = fileList;
-						}
-
-						var uploadFilePath = fileObj[filePath];
-						var uploadFileName = fileObj[fileName];
-						if (!$.isEmpty(uploadFilePath)) {
-							if (!$.isEmpty(_this.attr("fileElem"))) {
-								$(_this.attr("fileElem")).val(uploadFilePath);
-							}
-							if (!$.isEmpty(uploadFileName)) {
-								if (!$.isEmpty(_this.attr("fileNameElem"))) {
-									$(_this.attr("fileNameElem")).val(uploadFileName);
-								}
-							}
-						}
-
-					  //回调处理
-						var _callback = _this.attr("onCallback");
-				    if(!$.isEmpty(_callback) && !$.isEmpty(layui.fsCallback.button[_callback])){
-				    	layui.fsCallback.button[_callback](_this,fsCommon,JSON.parse(uploadFileList));
-				    }
-
-					}
-
-				});
-
-				break;
-			case "uploadHeadImage":
-				var _title = "修改头像";
-				var _width = "600px";
-				var _height = "500px";
-				var _url = $.result(fsConfig, "global.uploadHeadImageHtmlUrl", "/plugins/frame/views/upload-head-image.html");
-
-				fsCommon.open(_title, _width, _height, _url, function() {
-					var uploadFileList = top.$('meta[name="uploadFileList"]').attr("content");
-					if (!$.isEmpty(uploadFileList)) {
-
-						var fileList = JSON.parse(uploadFileList);
-						var fileObj = null;
-						if($.isArray(fileList) && fileList.length>0){//多文件
-							fileObj = fileList[0];
-						}else{//单文件
-							fileObj = fileList;
-						}
-
-					  //回调处理
-						var _callback = _this.attr("onCallback");
-				    if(!$.isEmpty(_callback) && !$.isEmpty(layui.fsCallback.button[_callback])){
-				    	layui.fsCallback.button[_callback](_this,fsCommon,fileObj);
-				    }
-
-						var _fileElem = _this.attr("fileElem");
-						if (!$.isEmpty(_fileElem)) {
-							var _fileThis = $(_fileElem);
-							var uploadFilePath = fileObj[filePath];
-							if(_fileThis.is('img')){
-								_fileThis.attr("src",uploadFilePath);
-							}else if(_fileThis.is('input')){
-								_fileThis.val(uploadFilePath);
-							}
-						}
-					}
-				});
-
-				break;
-			case "addRow":
-				getDatagrid(_tableId).addRow();
-				break;
-			case "save":
-
-				var groupId = _this.attr("groupId"); //分组id
-
-				if ($.isEmpty(groupId)) {
-					fsCommon.warnMsg("未配置分组id!");
-					return;
-				}
-				var fsFormData = {}; //form表单数据
-				var isFsForm = false; //是否有form表单
-				var fsTableData = []; //数据表格数据
-				var isFsTable = false; //是否有table表格
-
-				var isFsVerifyForm = true;
-
-				$("table.fsDatagrid,form").each(function(index, elem) {
-					var _groupId = $(this).attr("groupId");
-					if (!$.isEmpty(_groupId) && groupId == _groupId) {
-						if ("FORM" == elem.tagName.toUpperCase()) {
-							var isVerify = form.verifyForm($(this));
-							if (isVerify != false) { //验证通过
-								//获取form表单数据
-								var formData = $(this).getFormData();
-								$.extend(fsFormData, formData);
-								isFsForm = true;
-							} else {
-								isFsVerifyForm = false;
-								return false;
-							}
-						} else if ("TABLE" == elem.tagName.toUpperCase()) {
-							var data = getDatagrid(elem.id).getData();
-							$.extend(fsTableData, data);
-							isFsTable = true;
-						}
-					}
-				});
-
-				if (!isFsVerifyForm) {
-					return;
-				}
-				var param = {}; //参数
-
-				var submitFormSave = function() {
-					var url = _this.attr("url"); //请求url
-
-					if ($.isEmpty(_funcNo) && $.isEmpty(url)) {
-						fsCommon.warnMsg("功能号或请求地址为空！");
-						return;
-					}
-					if ($.isEmpty(url)) {
-						url = "/servlet/" + _funcNo;
-					}
-					//获取参数
-					var inputs = _this.attr("inputs");
-
-					if (!$.isEmpty(inputs)) {
-						var param2 = fsCommon.getParamByInputs(inputs);
-						$.extend(param, param2);
-					}
-					if (isFsForm) {
-						param["fsFormData"] = encodeURIComponent(JSON.stringify(fsFormData));
-					}
-					if (isFsTable) {
-						param["fsTableData"] = encodeURIComponent(JSON.stringify(fsTableData));
-					}
-
-					//请求数据
-					fsCommon.invoke(url, param, function(data) {
-						if (data[statusName] == "0") {
-							fsCommon.setRefreshTable("1");
-
-							//是否自动关闭，默认是
-							if (_this.attr("isClose") != "0") {
-								parent.layer.close(parent.layer.getFrameIndex(window.name));
-							}
-							fsCommon.successMsg(_successMsg);
-						} else {
-							//提示错误消息
-							fsCommon.errorMsg(data[msgName]);
-						}
-					}, null, _method);
-				}
-
-				var submitFormSave2 = function() {
-
-					if ("1" == _this.attr("isVerifyPwd")) //是否验证密码
-					{
-						fsCommon.promptVerifyPwd(param, function(data2) {
-							param = data2;
-							submitFormSave();
-						});
-					} else {
-						submitFormSave();
-					}
-
-				};
-
-				if ("1" == _this.attr("isConfirm")) {
-					var confirmMsg = _this.attr("confirmMsg");
-					if ($.isEmpty(confirmMsg)) {
-						confirmMsg = "是否确定操作选中的数据?";
-					}
-
-					fsCommon.confirm("提示", confirmMsg, function(index) {
-						top.layer.close(index);
-						submitFormSave();
-					});
-				} else {
-					submitFormSave();
-				}
-				break;
-			case "download": //下载
-				var url = _this.attr("url");
-				if (!$.isEmpty(servletUrl)) {
-					url = servletUrl + url;
-				}
-			  // 创建一个 form
-			  var form1 = document.createElement("form");
-			  // 添加到 body 中
-			  document.body.appendChild(form1);
-			  // form 的提交方式
-			  form1.method = "get";
-			  form1.target="_blank";
-			  // form 提交路径
-			  form1.action =url;
-			  // 对该 form 执行提交
-			  form1.submit();
-			  // 删除该 form
-			  document.body.removeChild(form1);
-				break;
-			case "right": //打开右边窗口
-
-				var rightId = _this.attr("rightId");
-				var rightTitle = _this.attr("rightTitle");
-				if ($.isEmpty(rightId)) {
-					return;
-				}
-
-				var formDom = $("#" + rightId);
-				if (formDom.length == 0) {
-					return;
-				}
-
-				//赋值标题
-				formDom.parentsUntil('div.layui-card').parent().children(".layui-card-header").html(rightTitle);
-
-				//表单赋值、查询。清空
-				var _mode = _this.attr("mode");
-
-				//获取参数
-				var inputs = _this.attr("inputs");
-
-				if (!$.isEmpty(inputs)) {
-					//获取选中的数据
-					var data = getDatagrid(_tableId).getCheckData(idVal);
-
-					var param = fsCommon.getParamByInputs(inputs, data);
-					//赋值
-					formDom.setFormData(param);
-				}
-
-				param["_mode"] = _mode;
-				getForm(rightId).loadFormData(param);
-				break;
-			default:
-				if (!$.isEmpty(_function)) {
-					try {
-						var obj = null;
-
-						if (!$.isEmpty(getDatagrid)) {
-							obj = getDatagrid(_tableId)
-						}
-
-						var data = null;
-						if (null != obj) {
-							data = obj.getCheckData();
-						}
-						if (!$.isEmpty(fsButtonCommon[_function])) {
-							//执行
-							fsButtonCommon[_function](_this, data, obj, fsCommon);
-						} else if (!$.isEmpty(layui.fsButton[_function])) {
-							layui.fsButton[_function](_this, data, obj, fsCommon);
-						}
-
-					} catch (e) {
-						console.error(e);
-					}
-				}
-				break;
+					break;
 			}
 
 		},
@@ -955,18 +1077,18 @@ layui.define([ 'layer', 'form', 'fsConfig', 'fsButtonCommon' ], function(exports
 		/**转换tree数据**/
 		toTree : function(data, parentId,idField,parentIdField) {
 			var tree = [];
-	    var temp = null;
-	    for (var i = 0; i < data.length; i++) {
+			var temp = null;
+			for (var i = 0; i < data.length; i++) {
 				var item = data[i];
-	      if (item[parentIdField] == parentId) {
-	        temp = fsCommon.toTree(data, item[idField],idField,parentIdField);
-	        if (null!=temp && temp.length > 0) {
-	         item.children = temp;
-	        }
-	        tree.push(item);
-	      }
-	    }
-	    return tree;
+				if (item[parentIdField] == parentId) {
+					temp = fsCommon.toTree(data, item[idField],idField,parentIdField);
+					if (null!=temp && temp.length > 0) {
+						item.children = temp;
+					}
+					tree.push(item);
+				}
+			}
+			return tree;
 		}
 	};
 	exports('fsCommon', fsCommon);
