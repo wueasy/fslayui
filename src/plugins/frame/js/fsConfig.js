@@ -41,18 +41,18 @@ layui.define([], function (exports) {
 	fsConfig["global"] = {
 		"servletUrl":"http://39.108.135.245:10100", //异步请求地址,本地工程可以不填
 		"loginUrl" : "/login", //登录url
-		"uploadUrl" : "http://39.108.135.245:10100/upload", //上传附件url
+		"uploadUrl" : "http://49.234.40.74:10100/upload", //上传附件url
 		"uploadHtmlUrl" : "/plugins/frame/views/file-upload.html", //上传附件html地址，默认/plugins/frame/views/upload.html
 		"loadDataType":"1",//加载数据类型，1：使用缓存数据，0：实时查询，默认0  （编辑或查看是否取缓存数据）
 		"datagridSubmitType":"1",//数据表格提交类型，1：原数据提交，2：增删改标签提交（fsType）， 默认1
-		"notifyType" : "toastr",//提醒类型，默认layer，执行消息提示类型
+		"notifyType" : "sweetalert",//提醒类型，默认layer，执行消息提示类型，sweetalert。toastr
 		"tableHeight" : "full-125",//默认table高度，默认full-155
 		"rsaKey":"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDzlPObayOD1prtJloDYS2YCj/FXlN0PXnxiMjgHHBLWJ18KL58Q/SQCfx0aSFkU4nf5QAZeJDp+0ALzrtIk3Y4fUqSxoRTjOfheSM6e/HS66+97BOhw4iqxyYwoZDMAd4QSi+7sbhBWNYKnJFoWgjazvv1ZoUpzF5Wnh6n+WhPTQIDAQAB",
 		"result" : { //响应结果配置
 	    "statusName": "errorNo", //数据状态的字段名称，默认：errorNo
 	    "msgName": "errorInfo", //状态信息的字段名称，默认：errorInfo
 	    "successNo" : "0", //执行成功错误码统一配置
-	    "dataName" : "results.data", //非表格数据的字段名称，默认：results.data
+	    "dataName" : "data", //非表格数据的字段名称，默认：results.data
 	    "file" : { //文件配置
 	    	"filePath" : "filePath",  //返回文件路径属性
 				"fileName" : "fileName"  //返回文件名称属性
@@ -65,9 +65,9 @@ layui.define([], function (exports) {
 				"limitName": "pageSize" //每页数据量的参数名，默认：pageSize
 			},
 			"response": {//响应配置
-				"countName": "results.data.total", //数据总数的字段名称，默认：results.data.total
-				"dataName" : "results.data", //数据列表的字段名称，默认：results.data
-				"dataNamePage": "results.data.list" //分页数据列表的字段名称，默认：results.data.list
+				"countName": "data.total", //数据总数的字段名称，默认：results.data.total
+				"dataName" : "data", //数据列表的字段名称，默认：results.data
+				"dataNamePage": "data.list" //分页数据列表的字段名称，默认：results.data.list
 			}//,
 //			"limit":10,//每页分页数量。默认20
 //			"limits":[10,20,30,50,100]//每页数据选择项，默认[10,20,30,50,100]
