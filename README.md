@@ -11,9 +11,8 @@
 
 > **fsLayui2** 是一个前端快速开发框架，支持数据表格增删改查操作，提供通用的组件，通过配置html实现数据请求，减少前端js重复开发的工作。目前支持单数据表格、多数据表格、树+数据表格、联动数据表格、富文本编辑器、下拉框联动、数据字典功能、表格编辑和提交等。  
 
-## 智能客服
 
-遇到问题可以先通过智能客服提问，[点击进入智能客服](https://bot.4paradigm.com/web/chat/4572/b5ffc48d-267f-4bf9-a76a-e70e9010bfc7)
+
 
 ## 支持功能
 
@@ -43,12 +42,19 @@
 [在线文档](http://www.wueasy.com/docs/fslayui/)
 
 
+## admin2演示
+
+[admin后端管理系统（基础版）](https://admins.demo.wueasy.com)
+
+[admin后端管理系统（专业版）](https://adminpro.demo.wueasy.com)
 
 ## 社区
 
 [问题反馈或讨论](https://github.com/wueasy/fslayui/issues)
 
 qq交流群：**24017956** [点击链接加入群](https://jq.qq.com/?_wv=1027&k=5uImi0a)  
+
+
 
 
 ## 授权
@@ -87,3 +93,6 @@ wueasy产品提供在线授权查询，可以通过`授权编号`查询是否为
 ## 示例
 
 ![](src/images/demo.gif)
+
+
+
